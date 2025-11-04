@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from "./ui/sheet";
 import { Menu, Sun, Moon, Volume2, VolumeX, Accessibility, HelpCircle } from "lucide-react";
 import { AccessibilitySettings } from "./AccessibilityPanel";
 
@@ -48,6 +48,9 @@ export function MenuHamburger({
           <SheetTitle className="text-2xl gradient-text flex items-center gap-2">
             Menu 🌸
           </SheetTitle>
+          <SheetDescription>
+            Configurações e opções do chatbot Sena
+          </SheetDescription>
         </SheetHeader>
         
         <div className="flex flex-col gap-3 mt-6">
