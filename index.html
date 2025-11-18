@@ -3,559 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sena Codex v1 - Em Breve</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>Cici — Em Breve</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
         :root {
-            --primary: #00f7ff;
-            --primary-glow: rgba(0, 247, 255, 0.7);
-            --secondary: #9d00ff;
-            --secondary-glow: rgba(157, 0, 255, 0.5);
-            --accent: #ff00c8;
-            --dark-bg: #050510;
-            --darker-bg: #020208;
-            --text: #e6f1ff;
-            --text-dim: #a0b3d9;
+            --primary: #6a3fc8;
+            --gradient-light: linear-gradient(135deg, #dbe7ff, #f3d9ff);
+            --gradient-dark: linear-gradient(135deg, #2e1b55, #1c0f33);
+            --glass-light: rgba(255,255,255,0.55);
+            --glass-dark: rgba(30, 30, 30, 0.55);
+            --logo-size: 80px; /* Tamanho do logo */
         }
 
         body {
-            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
-            color: var(--text);
-            font-family: 'Rajdhani', sans-serif;
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
-            position: relative;
+            font-family: "Inter", sans-serif;
+            transition: background 0.5s ease, color 0.4s ease;
         }
 
-        /* Efeito de partículas de fundo */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+        body.light {
+            background: var(--gradient-light);
+            color: #333;
         }
 
-        /* Efeito de grade holográfica */
-        .grid {
+        body.dark {
+            background: var(--gradient-dark);
+            color: #e5e5e5;
+        }
+
+        /* Canvas */
+        #particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 247, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 247, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 2;
-            opacity: 0.3;
-            pointer-events: none;
+            inset: 0;
+            z-index: -1;
         }
 
+        /* Container */
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 5;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 10;
+            margin-top: 50px;
+            padding: 45px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            backdrop-filter: blur(12px);
+            animation: fadeUp 0.9s ease forwards;
         }
 
-        .logo-container {
-            position: relative;
-            margin-bottom: 3rem;
-            perspective: 1000px;
+        body.light .container { background: var(--glass-light); }
+        body.dark .container { background: var(--glass-dark); }
+
+        @keyframes fadeUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
+        /* Logo */
         .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 5.5rem;
-            font-weight: 900;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: transparent;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px var(--primary-glow));
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
-            z-index: -1;
-            filter: blur(25px);
-            opacity: 0.7;
-            border-radius: 10px;
-        }
-
-        .logo-subtitle {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            font-weight: 500;
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--text-dim);
-            letter-spacing: 4px;
-            position: relative;
-        }
-
-        .logo-subtitle::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-
-        .subtitle {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            text-align: center;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            line-height: 1.6;
-            color: var(--text-dim);
-            position: relative;
-        }
-
-        .version {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            font-weight: 500;
-            text-align: center;
-            margin: 2rem 0;
-            color: var(--primary);
-            letter-spacing: 3px;
-            position: relative;
-            padding: 10px 20px;
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            border-radius: 4px;
-            background: rgba(0, 247, 255, 0.05);
-            backdrop-filter: blur(5px);
-        }
-
-        .version::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.1), transparent);
-            animation: scan 3s linear infinite;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 1.2rem 3rem;
-            margin-top: 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            border-radius: 4px;
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            font-weight: 500;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            backdrop-filter: blur(5px);
-        }
-
-        .cta-button:hover {
-            color: var(--dark-bg);
-            background: var(--primary);
-            box-shadow: 0 0 20px var(--primary-glow);
-            transform: translateY(-3px);
-        }
-
-        .cta-button:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: all 0.6s ease;
-            z-index: -1;
-        }
-
-        .cta-button:hover:before {
-            left: 100%;
-        }
-
-        /* Efeitos de brilho e luz ambiente */
-        .glow {
-            position: absolute;
+            width: var(--logo-size);
+            height: var(--logo-size);
+            margin: -20px auto 15px; /* Ajuste para centralizar acima do conteúdo */
+            background-image: url('https://i.imgur.com/uoWlYN7.jpeg');
+            background-size: cover;
+            background-position: center;
             border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-            opacity: 0.5;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .glow-1 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-            top: 10%;
-            left: 10%;
-            animation: float 8s ease-in-out infinite;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 5px;
+            color: var(--primary);
         }
 
-        .glow-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
-            bottom: 5%;
-            right: 10%;
-            animation: float 10s ease-in-out infinite reverse;
-        }
+        p { font-size: 1.2rem; }
 
-        /* Animações de dados flutuantes */
-        .data-stream {
-            position: absolute;
-            width: 2px;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
-            opacity: 0.7;
-            animation: dataFlow 5s linear infinite;
-        }
-
-        .data-stream:nth-child(2) {
-            left: 20%;
-            animation-delay: 1s;
-        }
-
-        .data-stream:nth-child(3) {
-            left: 40%;
-            animation-delay: 2s;
-        }
-
-        .data-stream:nth-child(4) {
-            left: 60%;
-            animation-delay: 3s;
-        }
-
-        .data-stream:nth-child(5) {
-            left: 80%;
-            animation-delay: 4s;
-        }
-
-        /* Animações */
-        @keyframes pulse {
-            0% {
-                text-shadow: 0 0 10px var(--primary-glow),
-                             0 0 20px var(--primary-glow),
-                             0 0 30px var(--primary-glow);
-            }
-            100% {
-                text-shadow: 0 0 15px var(--primary-glow),
-                             0 0 25px var(--primary-glow),
-                             0 0 35px var(--primary-glow),
-                             0 0 45px var(--secondary-glow);
-            }
+        /* Preview Cici */
+        .preview-card {
+            margin-top: 35px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(1deg);
-            }
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-14px); }
+            100% { transform: translateY(0px); }
         }
 
-        @keyframes scan {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
+        body.light .preview-card { background: #f8f2ff; border: 2px solid #d5c3ff; }
+        body.dark .preview-card { background: #2b1c40; border: 2px solid #3d285a; }
+
+        .preview-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 15px auto 20px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
         }
 
-        @keyframes dataFlow {
-            0% {
-                top: -100px;
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                top: 100vh;
-                opacity: 0;
-            }
-        }
-
-        /* Efeito de terminal */
-        .terminal {
-            position: absolute;
-            bottom: 50px;
-            left: 50px;
-            width: 400px;
-            background: rgba(5, 5, 16, 0.7);
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            border-radius: 5px;
-            padding: 15px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            color: var(--primary);
-            z-index: 5;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
-            overflow: hidden;
-        }
-
-        .terminal-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
-        }
-
-        .terminal-title {
-            font-weight: bold;
-        }
-
-        .terminal-content {
-            height: 120px;
-            overflow-y: auto;
-        }
-
-        .terminal-line {
-            margin-bottom: 5px;
-            animation: type 0.1s linear;
-        }
-
-        .terminal-line:nth-child(1) { animation-delay: 0.5s; }
-        .terminal-line:nth-child(2) { animation-delay: 1s; }
-        .terminal-line:nth-child(3) { animation-delay: 1.5s; }
-        .terminal-line:nth-child(4) { animation-delay: 2s; }
-        .terminal-line:nth-child(5) { animation-delay: 2.5s; }
-        .terminal-line:nth-child(6) { animation-delay: 3s; }
-        .terminal-line:nth-child(7) { animation-delay: 3.5s; }
-
-        @keyframes type {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
+        .notify-btn {
+            margin-top: 25px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600; /* Mais destaque para o botão */
+            color: #fff;
+            cursor: pointer;
             background: var(--primary);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 2px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .notify-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.3);
+        }
+        
+        /* Ocultar o loader, já que a ação é um redirecionamento */
+        .loader {
+            display: none; 
         }
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 3.5rem;
-            }
-            
-            .logo-subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            
-            .version {
-                font-size: 1.2rem;
-            }
-            
-            .terminal {
-                width: 300px;
-                left: 20px;
-                bottom: 20px;
-            }
+        footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.75;
         }
 
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 2.5rem;
-                letter-spacing: 3px;
-            }
-            
-            .logo-subtitle {
-                font-size: 1rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            .version {
-                font-size: 1rem;
-            }
-            
-            .terminal {
-                width: 90%;
-                left: 5%;
-                bottom: 10px;
-            }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            p { font-size: 1rem; }
+            .container { margin-top: 30px; padding: 35px 20px; }
+            .logo { margin: -10px auto 10px; }
         }
     </style>
 </head>
-<body>
-    <!-- Efeito de partículas -->
-    <div id="particles-js"></div>
+
+<body class="light">
+
+<canvas id="particles"></canvas>
+
+<div class="container">
     
-    <!-- Grade holográfica -->
-    <div class="grid"></div>
-    
-    <!-- Efeitos de brilho -->
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
-    
-    <!-- Fluxo de dados -->
-    <div class="data-stream"></div>
-    <div class="data-stream"></div>
-    <div class="data-stream"></div>
-    <div class="data-stream"></div>
-    <div class="data-stream"></div>
-    
-    <!-- Terminal de sistema -->
-    <div class="terminal">
-        <div class="terminal-header">
-            <div class="terminal-title">SENA_CODEX_SYSTEM</div>
-            <div>v1.0.0</div>
+    <div class="logo"></div>
+
+    <h1>Cici está chegando ✨</h1>
+    <p>A futura **inteligência assistiva** da AmplaAI está quase pronta.</p>
+    <p>Feita para ser intuitiva, acolhedora e moderna — e sim, com mais personalidade do que deveria.</p>
+
+    <div class="preview-card">
+        <div class="preview-image"
+             style="background-image:url('https://i.imgur.com/uoWlYN7.jpeg');">
         </div>
-        <div class="terminal-content">
-            <div class="terminal-line">> Initializing neural network...</div>
-            <div class="terminal-line">> Loading cognitive modules...</div>
-            <div class="terminal-line">> Establishing quantum connection...</div>
-            <div class="terminal-line">> System integrity: 100%</div>
-            <div class="terminal-line">> Memory allocation: optimal</div>
-            <div class="terminal-line">> Awaiting activation protocol...</div>
-            <div class="terminal-line">> Status: READY<span class="cursor"></span></div>
-        </div>
-    </div>
-    
-    <!-- Conteúdo principal -->
-    <div class="container">
-        <div class="logo-container">
-            <h1 class="logo">Sena</h1>
-            <div class="logo-subtitle">COGNITIVE SYSTEM</div>
-        </div>
-        <p class="subtitle">Estamos nos preparando para o próximo estágio.</p>
-        <div class="version">Sena Codex v1 — Em breve.</div>
-        <a href="https://docs.google.com/forms/d/1FdU9X77y_C0-zAduOO7jRtvoW-qHLPCszSk_yey9fdw/edit?usp=drivesdk&ouid=104821740936890231834&chromeless=1&pli=1&authuser=0" class="cta-button" target="_blank">
-            <i class="fas fa-user-plus"></i> Fazer o pré-registro
-        </a>
+        <p>
+            “Eu sou a Cici, e estou me preparando pra conhecer você.  
+            Falta pouco para eu estar totalmente online.”
+        </p>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Configuração das partículas
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 150, density: { enable: true, value_area: 800 } },
-                color: { value: "#00f7ff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#00f7ff",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
+    <button class="notify-btn" onclick="notifyMe()">
+        Me avise quando lançar 🚀
+    </button>
 
-        // Efeito de digitação no terminal
-        document.addEventListener('DOMContentLoaded', function() {
-            const lines = document.querySelectorAll('.terminal-line');
-            lines.forEach(line => {
-                const text = line.textContent;
-                line.textContent = '';
-                
-                let i = 0;
-                const typeWriter = () => {
-                    if (i < text.length) {
-                        line.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, 50);
-                    }
-                };
-                
-                setTimeout(typeWriter, parseInt(line.style.animationDelay || 0) * 1000);
-            });
-        });
+    <div class="loader"></div>
 
-        // Efeito de brilho interativo no logo
-        const logo = document.querySelector('.logo');
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            logo.style.transform = `translate(${x * 10 - 5}px, ${y * 10 - 5}px)`;
-        });
-    </script>
+    <footer>
+        © 2025 Cici • AmplaAI
+    </footer>
+</div>
+
+<script>
+/* ============================
+   MODO DARK AUTOMÁTICO
+=========================== */
+function aplicarTema() {
+    // Aplica o tema Dark entre 19h (7pm) e 6h (6am)
+    const horas = new Date().getHours();
+    document.body.className = (horas >= 19 || horas <= 6) ? "dark" : "light";
+}
+aplicarTema();
+
+/* ============================
+   BOTÃO DE NOTIFICAÇÃO (Conectado ao Google Forms)
+=========================== */
+function notifyMe() {
+    const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfZ0Lbr_xsrus2DAKYTOHf_zn3DHKwx8Fwtv-89Q55ivZqzqA/viewform?usp=pp_url";
+    
+    // Abre o formulário em uma nova aba
+    window.open(googleFormUrl, '_blank');
+}
+
+/* ============================
+   PARTÍCULAS
+=========================== */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+let particlesArray = [];
+const total = 75;
+
+// Garante que o canvas se ajusta ao tamanho da janela
+function resizeCanvas() {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    init();
+}
+resizeCanvas(); // Inicializa
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.7;
+        this.speedY = (Math.random() - 0.5) * 0.7;
+        this.color = "rgba(110, 60, 200, 0.5)"; // Cor ajustada para ter transparência
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+function init() {
+    particlesArray = [];
+    for (let i = 0; i < total; i++) particlesArray.push(new Particle());
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particlesArray.forEach((p, i) => {
+        p.update();
+        p.draw();
+
+        // Linhas de conexão entre partículas próximas
+        for (let j = i; j < particlesArray.length; j++) {
+            const dx = p.x - particlesArray[j].x;
+            const dy = p.y - particlesArray[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 130) {
+                ctx.beginPath();
+                ctx.strokeStyle = "rgba(110,60,200,0.15)";
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                ctx.stroke();
+            }
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+window.onresize = resizeCanvas; // Chama resizeCanvas na mudança de tamanho da janela
+
+init();
+animate();
+</script>
+
 </body>
 </html>
