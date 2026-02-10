@@ -1,1369 +1,491 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sion.ai — Plataforma de inteligência artificial focada em aprendizado, desenvolvimento e evolução contínua. Aprenda. Desenvolva. Evolua.">
-    <meta name="keywords" content="inteligência artificial, aprendizado, desenvolvimento, produtividade, IA, Sion.ai, Sena">
-    <meta name="author" content="S.ai+ Apps">
-    <meta name="robots" content="index, follow">
-    <meta name="google-adsense-account" content="ca-pub-4225779055216067">
-    <link rel="canonical" href="https://sion.ai">
-
-    <meta property="og:title" content="S.ai+ Apps — Aprenda. Desenvolva. Evolua.">
-    <meta property="og:description" content="IA que cresce com você. Plataforma focada em aprendizado, desenvolvimento e evolução contínua.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sion.ai">
-
-    <title>S.ai+ Apps — Aprenda. Desenvolva. Evolua.</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4225779055216067"
-     crossorigin="anonymous"></script>
-
+    <title>Claudinei - Documentação Oficial</title>
     <style>
-        /* ─── RESET ─── */
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* ─── VARIABLES ─── */
-        :root {
-            --electric-blue: #00F0FF;
-            --deep-purple:   #7B2CBF;
-            --hot-pink:      #FF006E;
-            --neon-green:    #39FF14;
-            --cyber-yellow:  #FFD60A;
+```
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+    }
 
-            --bg-dark:       #0A0E27;
-            --bg-darker:     #050814;
-            --bg-card:       #131829;
-            --bg-elevated:   #1A1F3A;
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-            --text-primary:  #FFFFFF;
-            --text-secondary:#B8C5D6;
-            --text-muted:    #6B7A99;
+    header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
 
-            --gradient-hero: linear-gradient(135deg, var(--electric-blue), var(--deep-purple), var(--hot-pink));
-            --gradient-accent: linear-gradient(90deg, var(--hot-pink), var(--cyber-yellow));
-            --gradient-card: linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
+    .logo {
+        font-size: 3em;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+    }
 
-            --glow-blue:  0 0 20px rgba(0,240,255,.3);
-            --glow-pink:  0 0 20px rgba(255,0,110,.3);
-            --shadow-lg:  0 20px 60px rgba(0,0,0,.5);
-        }
+    .tagline {
+        font-size: 1.2em;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+    }
 
-        /* ─── BASE ─── */
-        html { scroll-behavior: smooth; }
+    .badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-size: 0.9em;
+        font-weight: 600;
+        margin: 5px;
+    }
 
-        body {
-            font-family: 'Syne', sans-serif;
-            line-height: 1.7;
-            color: var(--text-primary);
-            background: var(--bg-darker);
-            overflow-x: hidden;
-        }
+    .content {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
 
-        /* ─── GRID BG ─── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background:
-                linear-gradient(90deg, rgba(0,240,255,.03) 1px, transparent 1px),
-                linear-gradient(0deg,  rgba(0,240,255,.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-            animation: gridScroll 20s linear infinite;
-        }
-        @keyframes gridScroll {
-            to { transform: translateY(50px); }
-        }
+    h2 {
+        color: #2c3e50;
+        font-size: 2em;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #667eea;
+    }
 
-        /* ─── FLOATING ORBS ─── */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: .15;
-            pointer-events: none;
-            z-index: 1;
-            animation: orbFloat 20s ease-in-out infinite;
-        }
-        .orb-1 { width:400px; height:400px; background:var(--electric-blue); top:-200px; left:-200px; }
-        .orb-2 { width:500px; height:500px; background:var(--hot-pink);       bottom:-250px; right:-250px; animation-delay:5s; }
-        .orb-3 { width:300px; height:300px; background:var(--deep-purple);    top:50%; right:-150px; animation-delay:10s; }
-        @keyframes orbFloat {
-            0%,100% { transform: translate(0,0) scale(1); }
-            33%     { transform: translate(50px,-50px) scale(1.1); }
-            66%     { transform: translate(-30px,30px) scale(.9); }
-        }
+    h3 {
+        color: #34495e;
+        font-size: 1.5em;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
 
-        /* ─── LAYOUT ─── */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 10;
-        }
+    p {
+        margin-bottom: 15px;
+        color: #555;
+        font-size: 1.05em;
+    }
 
-        /* ─── HEADER ─── */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(10,14,39,.8);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(0,240,255,.1);
-            transition: background .3s, box-shadow .3s;
-        }
-        header.scrolled {
-            background: rgba(10,14,39,.95);
-            box-shadow: 0 10px 30px rgba(0,0,0,.3);
-        }
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    .feature-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 30px;
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        /* logo */
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-            text-decoration: none;
-            transition: transform .3s;
-        }
-        .logo-link:hover { transform: translateX(4px); }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
 
-        .logo-svg {
-            width: 42px;
-            height: 42px;
-            filter: drop-shadow(var(--glow-blue));
-            animation: logoFloat 3s ease-in-out infinite;
-        }
-        @keyframes logoFloat {
-            0%,100% { transform: translateY(0); }
-            50%     { transform: translateY(-4px); }
-        }
+    .feature-icon {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+    }
 
-        .brand-name {
-            font-size: 1.4rem;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -.02em;
-        }
+    .feature-title {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
 
-        /* nav links */
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: .92rem;
-            position: relative;
-            transition: color .3s;
-            letter-spacing: .4px;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px; left: 0;
-            width: 0; height: 2px;
-            background: var(--gradient-accent);
-            transition: width .3s;
-        }
-        .nav-links a:hover { color: var(--text-primary); }
-        .nav-links a:hover::after { width: 100%; }
+    .feature-description {
+        color: #555;
+        font-size: 0.95em;
+    }
 
-        .cta-nav {
-            padding: .6rem 1.4rem;
-            background: var(--gradient-hero);
-            border-radius: 8px;
-            font-weight: 700;
-            color: #fff !important;
-            -webkit-text-fill-color: #fff !important;
-            box-shadow: var(--glow-blue);
-            transition: transform .3s, box-shadow .3s;
-        }
-        .cta-nav::after { display: none !important; }
-        .cta-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,240,255,.4);
-        }
+    .code-block {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px;
+        border-radius: 10px;
+        overflow-x: auto;
+        margin: 20px 0;
+        font-family: 'Courier New', monospace;
+    }
 
-        /* mobile hamburger */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: .5rem;
-            z-index: 1001;
-        }
-        .hamburger span {
-            width: 26px; height: 3px;
-            background: var(--electric-blue);
-            border-radius: 2px;
-            transition: all .3s;
-        }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+    .info-box {
+        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        border-left: 4px solid #667eea;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
 
-        /* ─── HERO ─── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 140px 2rem 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
+    .warning-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+
+    ul, ol {
+        margin: 15px 0 15px 30px;
+    }
+
+    li {
+        margin: 10px 0;
+        color: #555;
+    }
+
+    strong {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    footer {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-info {
+        font-size: 1.1em;
+        color: #555;
+        margin-top: 15px;
+    }
+
+    .contact-link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+        color: #764ba2;
+    }
+
+    @media (max-width: 768px) {
+        .logo {
+            font-size: 2em;
         }
 
-        .hero-text { animation: fadeUp 1s ease-out; }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .45rem .9rem;
-            background: rgba(0,240,255,.1);
-            border: 1px solid rgba(0,240,255,.3);
-            border-radius: 50px;
-            font-size: .82rem;
-            font-weight: 600;
-            color: var(--electric-blue);
-            margin-bottom: 1.8rem;
-            font-family: 'Space Mono', monospace;
-            animation: fadeUp 1s ease-out .15s both;
-        }
-        .hero-badge .dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: var(--electric-blue);
-            animation: pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%,100% { opacity:1; }
-            50%     { opacity:.3; }
+        h2 {
+            font-size: 1.5em;
         }
 
-        .hero h1 {
-            font-size: 4.4rem;
-            font-weight: 800;
-            line-height: 1.08;
-            margin-bottom: 1.4rem;
-            letter-spacing: -.03em;
-            animation: fadeUp 1s ease-out .25s both;
+        .feature-grid {
+            grid-template-columns: 1fr;
         }
-        .gradient-text {
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-        }
+    }
+</style>
+```
 
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2.2rem;
-            max-width: 560px;
-            animation: fadeUp 1s ease-out .38s both;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: fadeUp 1s ease-out .5s both;
-        }
-
-        /* buttons */
-        .btn-primary {
-            padding: .95rem 2.2rem;
-            background: var(--gradient-hero);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--glow-blue);
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            transition: transform .3s, box-shadow .3s;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,240,255,.4);
-        }
-
-        .btn-secondary {
-            padding: .95rem 2.2rem;
-            background: rgba(255,255,255,.05);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            border: 2px solid rgba(255,255,255,.12);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            transition: all .3s;
-        }
-        .btn-secondary:hover {
-            background: rgba(255,255,255,.1);
-            border-color: rgba(255,255,255,.3);
-            transform: translateY(-3px);
-        }
-
-        /* hero visual cards */
-        .hero-visual { animation: fadeUp 1s ease-out .6s both; }
-        .visual-container {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .float-card {
-            position: absolute;
-            background: var(--gradient-card);
-            border: 1px solid rgba(0,240,255,.2);
-            border-radius: 18px;
-            padding: 1.4rem 1.6rem;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-lg);
-            animation: cardBob 6s ease-in-out infinite;
-            min-width: 140px;
-        }
-        .float-card:nth-child(1) { top:8%;  left:2%;  animation-delay:0s; }
-        .float-card:nth-child(2) { top:42%; right:0;  animation-delay:2s; }
-        .float-card:nth-child(3) { bottom:8%; left:18%; animation-delay:4s; }
-        @keyframes cardBob {
-            0%,100% { transform: translateY(0) rotate(0deg); }
-            50%     { transform: translateY(-18px) rotate(1.5deg); }
-        }
-        .fc-icon  { font-size: 1.8rem; margin-bottom: .3rem; }
-        .fc-label { font-size: .78rem; font-weight: 600; color: var(--text-secondary); font-family: 'Space Mono', monospace; }
-        .fc-value { font-size: 1.4rem; font-weight: 800; background: var(--gradient-accent); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-
-        /* ─── STATS ─── */
-        .stats-band {
-            padding: 60px 2rem;
-            background: var(--bg-dark);
-            border-top:    1px solid rgba(0,240,255,.1);
-            border-bottom: 1px solid rgba(0,240,255,.1);
-            position: relative; z-index:10;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Space Mono', monospace;
-            margin-bottom: .3rem;
-        }
-        .stat-label {
-            font-size: .95rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* ─── SECTIONS COMMON ─── */
-        section {
-            padding: 110px 2rem;
-            position: relative;
-            z-index: 10;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 780px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .section-tag {
-            display: inline-block;
-            padding: .4rem .9rem;
-            background: rgba(255,0,110,.1);
-            border: 1px solid rgba(255,0,110,.3);
-            border-radius: 50px;
-            font-size: .78rem;
-            font-weight: 600;
-            color: var(--hot-pink);
-            margin-bottom: 1.2rem;
-            font-family: 'Space Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: .8px;
-        }
-        .section-title {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 1.2rem;
-            letter-spacing: -.02em;
-        }
-        .section-sub {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* ─── SENA (produto principal) ─── */
-        #sena {
-            background:
-                radial-gradient(circle at 20% 50%, rgba(123,44,191,.08), transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(0,240,255,.08), transparent 50%);
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 1.8rem;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .feat-card {
-            background: var(--gradient-card);
-            border: 1px solid rgba(0,240,255,.15);
-            border-radius: 18px;
-            padding: 2.2rem;
-            transition: transform .4s, border-color .4s, box-shadow .4s;
-            position: relative;
-            overflow: hidden;
-        }
-        .feat-card::before {
-            content:'';
-            position: absolute; inset:0;
-            background: linear-gradient(135deg, rgba(0,240,255,.06), transparent);
-            opacity: 0;
-            transition: opacity .4s;
-        }
-        .feat-card:hover::before { opacity:1; }
-        .feat-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--electric-blue);
-            box-shadow: 0 20px 50px rgba(0,240,255,.15);
-        }
-        .feat-icon { font-size: 2.4rem; margin-bottom: 1rem; display:block; position:relative; z-index:1; }
-        .feat-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: .7rem; position:relative; z-index:1; }
-        .feat-card p  { color: var(--text-secondary); font-size: .97rem; line-height:1.75; position:relative; z-index:1; }
-
-        .sena-cta { text-align:center; margin-top:3.5rem; }
-
-        /* ─── ECOSSISTEMA ─── */
-        .eco-grid {
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            gap: 2rem;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .eco-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,0,110,.18);
-            border-radius: 18px;
-            padding: 2.6rem;
-            transition: transform .4s, border-color .4s, box-shadow .4s;
-            position: relative;
-            overflow: hidden;
-        }
-        .eco-card::after {
-            content:'';
-            position: absolute;
-            top:0; right:0;
-            width:180px; height:180px;
-            background: radial-gradient(circle, rgba(255,0,110,.08), transparent);
-            border-radius:50%;
-            transform: translate(40%,-40%);
-            pointer-events:none;
-        }
-        .eco-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--hot-pink);
-            box-shadow: 0 20px 50px rgba(255,0,110,.15);
-        }
-        .eco-status {
-            display: inline-block;
-            padding: .35rem .85rem;
-            border-radius: 50px;
-            font-size: .72rem;
-            font-weight: 700;
-            font-family: 'Space Mono', monospace;
-            margin-bottom: 1.2rem;
-            position: relative; z-index:1;
-        }
-        .eco-status.active   { background: rgba(57,255,20,.1); border:1px solid rgba(57,255,20,.3); color: var(--neon-green); }
-        .eco-status.soon     { background: rgba(255,214,10,.1); border:1px solid rgba(255,214,10,.3); color: var(--cyber-yellow); }
-
-        .eco-card h3 { font-size: 1.7rem; font-weight: 800; margin-bottom: .8rem; position:relative; z-index:1; }
-        .eco-card p  { color: var(--text-secondary); line-height:1.8; margin-bottom:.6rem; position:relative; z-index:1; }
-
-        .eco-links { display:flex; gap:.8rem; margin-top:1.6rem; flex-wrap:wrap; position:relative; z-index:1; }
-        .eco-link {
-            padding: .55rem 1.2rem;
-            background: rgba(255,255,255,.05);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: .88rem;
-            border: 1px solid rgba(255,255,255,.1);
-            transition: all .3s;
-            display: inline-flex;
-            align-items: center;
-            gap: .4rem;
-        }
-        .eco-link:hover { background:rgba(255,255,255,.1); border-color:var(--hot-pink); transform:translateY(-2px); }
-        .eco-link.muted { opacity:.55; cursor:default; pointer-events:none; }
-
-        /* ─── JORNADA / TIMELINE ─── */
-        .timeline {
-            max-width: 820px;
-            margin: 0 auto;
-            position: relative;
-            padding-left: 2.8rem;
-        }
-        .timeline::before {
-            content:'';
-            position: absolute;
-            left:0; top:0;
-            width:2px; height:100%;
-            background: linear-gradient(180deg, var(--electric-blue), var(--hot-pink));
-        }
-        .tl-item {
-            position: relative;
-            margin-bottom: 2.8rem;
-            padding-left: 1.8rem;
-        }
-        .tl-item::before {
-            content:'';
-            position: absolute;
-            left: -3.2rem; top: .35rem;
-            width:12px; height:12px;
-            border-radius:50%;
-            background: var(--electric-blue);
-            border: 3px solid var(--bg-darker);
-            box-shadow: var(--glow-blue);
-        }
-        .tl-date {
-            font-size: .82rem;
-            color: var(--hot-pink);
-            font-weight: 700;
-            font-family: 'Space Mono', monospace;
-            margin-bottom: .35rem;
-        }
-        .tl-item h3 { font-size: 1.3rem; font-weight:700; margin-bottom:.5rem; }
-        .tl-item p  { color: var(--text-secondary); line-height:1.8; font-size:.97rem; }
-
-        /* ─── SOBRE ─── */
-        .sobre-text {
-            max-width: 820px;
-            margin: 0 auto;
-        }
-        .sobre-text p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            line-height: 1.9;
-            margin-bottom: 1.6rem;
-        }
-
-        .manifesto-block {
-            max-width: 640px;
-            margin: 4.5rem auto 0;
-            text-align: center;
-            padding: 3rem 2rem;
-            background: var(--gradient-card);
-            border: 1px solid rgba(0,240,255,.15);
-            border-radius: 20px;
-        }
-        .manifesto-block p {
-            font-size: 1.5rem !important;
-            color: var(--text-primary) !important;
-            line-height: 2 !important;
-            font-weight: 600;
-            margin-bottom: 0 !important;
-        }
-
-        /* team */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            gap: 1.6rem;
-            max-width: 1200px;
-            margin: 3.5rem auto 0;
-        }
-        .team-card {
-            text-align: center;
-            padding: 2rem 1.2rem;
-            background: var(--gradient-card);
-            border: 1px solid rgba(0,240,255,.1);
-            border-radius: 18px;
-            transition: transform .3s, border-color .3s;
-        }
-        .team-card:hover { transform:translateY(-8px); border-color:var(--electric-blue); }
-        .team-avatar {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            background: var(--gradient-hero);
-            margin: 0 auto 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 800;
-            border: 3px solid var(--bg-darker);
-            box-shadow: var(--glow-blue);
-        }
-        .team-card h4   { font-size:1.05rem; font-weight:700; margin-bottom:.3rem; }
-        .team-card .role { font-size:.82rem; color:var(--text-muted); font-family:'Space Mono',monospace; }
-
-        /* ─── CONTATO ─── */
-        #contato {
-            background: radial-gradient(circle at 50% 50%, rgba(0,240,255,.04), transparent 70%);
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            align-items: start;
-        }
-        .contact-list { display:flex; flex-direction:column; gap:1.2rem; }
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.2rem;
-            padding: 1.5rem;
-            background: var(--gradient-card);
-            border: 1px solid rgba(0,240,255,.1);
-            border-radius: 14px;
-            transition: border-color .3s, transform .3s;
-        }
-        .contact-item:hover { border-color:var(--electric-blue); transform:translateX(8px); }
-        .contact-item .ci-icon { font-size:1.6rem; }
-        .contact-item strong  { display:block; font-size:.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; font-family:'Space Mono',monospace; margin-bottom:.3rem; }
-        .contact-item a       { color:var(--text-primary); text-decoration:none; font-size:1.05rem; font-weight:600; transition:color .3s; }
-        .contact-item a:hover { color:var(--electric-blue); }
-
-        /* form */
-        .contact-form {
-            background: var(--gradient-card);
-            border: 1px solid rgba(0,240,255,.1);
-            border-radius: 18px;
-            padding: 2.4rem;
-        }
-        .form-group { margin-bottom:1.3rem; }
-        .form-group label {
-            display: block;
-            font-size: .88rem;
-            font-weight: 600;
-            margin-bottom: .4rem;
-            color: var(--text-secondary);
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: .9rem 1rem;
-            background: rgba(255,255,255,.05);
-            border: 1px solid rgba(255,255,255,.1);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-family: 'Syne', sans-serif;
-            font-size: .97rem;
-            transition: border-color .3s, box-shadow .3s;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--electric-blue);
-            box-shadow: 0 0 0 3px rgba(0,240,255,.1);
-        }
-        .form-group textarea { resize:vertical; min-height:110px; }
-
-        /* ─── FOOTER ─── */
-        footer {
-            background: var(--bg-darker);
-            border-top: 1px solid rgba(0,240,255,.1);
-            padding: 4rem 2rem 2rem;
-            margin-top: 60px;
-            position: relative;
-            z-index: 10;
-        }
-        .footer-grid {
-            max-width: 1200px;
-            margin: 0 auto 2.5rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2.5rem;
-        }
-        .footer-brand h3 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin-bottom: .8rem;
-            background: var(--gradient-hero);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            background-clip:text;
-        }
-        .footer-brand p { color:var(--text-secondary); line-height:1.7; margin-bottom:1.2rem; font-size:.95rem; }
-
-        .social-row { display:flex; gap:.7rem; }
-        .social-btn {
-            width:38px; height:38px;
-            border-radius:10px;
-            background:rgba(255,255,255,.05);
-            border:1px solid rgba(255,255,255,.1);
-            display:flex; align-items:center; justify-content:center;
-            color:var(--text-primary);
-            text-decoration:none;
-            font-size:1.1rem;
-            transition:all .3s;
-        }
-        .social-btn:hover { background:var(--electric-blue); border-color:var(--electric-blue); transform:translateY(-2px); }
-
-        .footer-col h4 { font-size:.9rem; font-weight:700; margin-bottom:1.2rem; color:var(--text-primary); text-transform:uppercase; letter-spacing:.6px; }
-        .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
-        .footer-col a  { color:var(--text-secondary); text-decoration:none; font-size:.9rem; transition:color .3s, transform .3s; display:inline-block; }
-        .footer-col a:hover { color:var(--electric-blue); transform:translateX(4px); }
-
-        .footer-bottom {
-            max-width:1200px;
-            margin:0 auto;
-            padding-top:1.8rem;
-            border-top:1px solid rgba(255,255,255,.08);
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            color:var(--text-muted);
-            font-size:.85rem;
-        }
-
-        /* ─── SCROLL TOP ─── */
-        .scroll-top {
-            position:fixed;
-            bottom:2rem; right:2rem;
-            width:46px; height:46px;
-            background:var(--gradient-hero);
-            border-radius:50%;
-            display:flex; align-items:center; justify-content:center;
-            color:#fff;
-            font-size:1.3rem;
-            cursor:pointer;
-            opacity:0; pointer-events:none;
-            transition:all .3s;
-            z-index:999;
-            box-shadow:var(--glow-blue);
-            border:none;
-        }
-        .scroll-top.visible { opacity:1; pointer-events:all; }
-        .scroll-top:hover   { transform:translateY(-4px); }
-
-        /* ─── FADE-IN (scroll reveal) ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity .6s ease, transform .6s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ─── KEYFRAMES ─── */
-        @keyframes fadeUp {
-            from { opacity:0; transform:translateY(28px); }
-            to   { opacity:1; transform:translateY(0); }
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width:1100px) {
-            .hero h1        { font-size:3.4rem; }
-            .section-title  { font-size:2.8rem; }
-            .features-grid  { grid-template-columns:repeat(2,1fr); }
-            .team-grid      { grid-template-columns:repeat(2,1fr); }
-        }
-        @media (max-width:900px) {
-            .nav-links {
-                position:fixed; top:0; left:-100%;
-                width:100%; height:100vh;
-                background:rgba(10,14,39,.97);
-                backdrop-filter:blur(20px);
-                flex-direction:column;
-                justify-content:center; align-items:center;
-                gap:1.8rem;
-                transition:left .4s;
-                z-index:999;
-            }
-            .nav-links.open { left:0; }
-            .hamburger { display:flex; }
-
-            .hero-content { grid-template-columns:1fr; gap:2.5rem; }
-            .hero-visual  { order:-1; max-width:400px; margin:0 auto; }
-            .hero h1      { font-size:2.8rem; }
-            .section-title{ font-size:2.4rem; }
-            .features-grid{ grid-template-columns:1fr; }
-            .eco-grid     { grid-template-columns:1fr; }
-            .contact-grid { grid-template-columns:1fr; }
-            .footer-grid  { grid-template-columns:1fr 1fr; }
-            .stats-grid   { grid-template-columns:repeat(2,1fr); }
-        }
-        @media (max-width:580px) {
-            .hero         { padding:120px 1.4rem 60px; }
-            .hero h1      { font-size:2rem; }
-            section       { padding:80px 1.4rem; }
-            .section-title{ font-size:1.9rem; }
-            .stats-grid   { grid-template-columns:repeat(2,1fr); gap:1.5rem; }
-            .stat-number  { font-size:2.2rem; }
-            .team-grid    { grid-template-columns:1fr 1fr; }
-            .footer-grid  { grid-template-columns:1fr; }
-            .footer-bottom{ flex-direction:column; gap:.6rem; text-align:center; }
-            .hero-cta     { flex-direction:column; }
-            .btn-primary, .btn-secondary { width:100%; justify-content:center; }
-        }
-    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo">🤖 Claudinei</div>
+            <div class="tagline">Assistente de IA Avançado com Motor Hanabi v1.0</div>
+            <div>
+                <span class="badge">Powered by Hanabi v1.0</span>
+                <span class="badge">AmplaAI Platforms</span>
+            </div>
+        </header>
 
-<!-- orbs -->
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
+```
+    <div class="content">
+        <h2>📘 Bem-vindo à Documentação do Claudinei</h2>
+        <p>
+            O <strong>Claudinei</strong> é um assistente de inteligência artificial de última geração, desenvolvido pela <strong>AmplaAI Platforms</strong> e alimentado pelo revolucionário motor de IA <strong>Hanabi v1.0</strong>. Nossa missão é fornecer interações inteligentes, contextuais e altamente personalizadas para atender às suas necessidades.
+        </p>
 
-<!-- ═══ HEADER ═══ -->
-<header id="header">
-    <nav>
-        <a href="https://sion.ai" class="logo-link">
-            <!-- SVG Logo: S.ai+ -->
-            <svg class="logo-svg" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%"  stop-color="#00F0FF"/>
-                        <stop offset="50%" stop-color="#7B2CBF"/>
-                        <stop offset="100%" stop-color="#FF006E"/>
-                    </linearGradient>
-                    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%"  stop-color="#FF006E"/>
-                        <stop offset="100%" stop-color="#FFD60A"/>
-                    </linearGradient>
-                </defs>
-                <!-- outer ring -->
-                <circle cx="21" cy="21" r="20" stroke="url(#g1)" stroke-width="2" fill="none" opacity=".6"/>
-                <!-- bold S -->
-                <text x="7" y="29" font-family="Syne, sans-serif" font-weight="800" font-size="22" fill="url(#g1)">S</text>
-                <!-- .ai subscript -->
-                <text x="20" y="29" font-family="Space Mono, monospace" font-weight="700" font-size="10" fill="url(#g2)">.ai</text>
-                <!-- + accent (top-right) -->
-                <g fill="none" stroke="url(#g2)" stroke-width="2.2" stroke-linecap="round">
-                    <line x1="35" y1="5"  x2="35" y2="13"/>
-                    <line x1="31" y1="9"  x2="39" y2="9"/>
-                </g>
-            </svg>
-            <span class="brand-name">S.ai+ Apps</span>
-        </a>
+        <div class="info-box">
+            <strong>💡 Sobre o Hanabi v1.0:</strong> Motor de IA proprietário desenvolvido especificamente para compreensão profunda de contexto, raciocínio avançado e respostas naturais em português brasileiro.
+        </div>
+    </div>
 
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#sena">Sena</a></li>
-            <li><a href="#ecossistema">Ecossistema</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#jornada">Jornada</a></li>
-            <li><a href="#contato" class="cta-nav">Contato</a></li>
+    <div class="content">
+        <h2>✨ Principais Recursos</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <div class="feature-title">Inteligência Contextual</div>
+                <div class="feature-description">
+                    Compreende e mantém contexto ao longo de conversas complexas, adaptando-se dinamicamente às suas necessidades.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <div class="feature-title">Linguagem Natural</div>
+                <div class="feature-description">
+                    Comunicação fluida e natural em português brasileiro, com compreensão de nuances culturais e regionais.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Respostas Rápidas</div>
+                <div class="feature-description">
+                    Processamento otimizado com o Hanabi v1.0 garante respostas instantâneas sem comprometer a qualidade.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Segurança e Privacidade</div>
+                <div class="feature-description">
+                    Seus dados são tratados com máxima segurança, seguindo as melhores práticas de proteção de informações.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Personalização</div>
+                <div class="feature-description">
+                    Adapta-se ao seu estilo de comunicação e preferências, oferecendo uma experiência única.
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <div class="feature-title">Multidomínio</div>
+                <div class="feature-description">
+                    Conhecimento abrangente em diversas áreas, desde tecnologia até cultura geral e negócios.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>🚀 Como Começar</h2>
+        
+        <h3>1. Acesso à Plataforma</h3>
+        <p>
+            O Claudinei está disponível através do domínio <strong>claudinei.ia.br</strong>. Basta acessar e começar a interagir imediatamente.
+        </p>
+
+        <h3>2. Primeiros Passos</h3>
+        <ol>
+            <li><strong>Faça sua primeira pergunta:</strong> Comece com algo simples para se familiarizar com o sistema</li>
+            <li><strong>Explore diferentes tópicos:</strong> Teste o conhecimento do Claudinei em áreas diversas</li>
+            <li><strong>Use comandos específicos:</strong> Peça análises detalhadas, resumos ou explicações passo a passo</li>
+            <li><strong>Forneça contexto:</strong> Quanto mais informação você compartilhar, melhores serão as respostas</li>
+        </ol>
+
+        <h3>3. Melhores Práticas</h3>
+        <ul>
+            <li>Seja claro e específico em suas perguntas</li>
+            <li>Forneça contexto relevante quando necessário</li>
+            <li>Não hesite em pedir esclarecimentos ou reformulações</li>
+            <li>Use linguagem natural - não precisa usar comandos formais</li>
         </ul>
 
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
+        <div class="warning-box">
+            <strong>⚠️ Importante:</strong> O Claudinei é uma ferramenta de auxílio e não substitui aconselhamento profissional especializado em áreas como medicina, direito ou finanças.
         </div>
-    </nav>
-</header>
+    </div>
 
-<main>
+    <div class="content">
+        <h2>🔧 Capacidades Técnicas</h2>
+        
+        <h3>Processamento de Linguagem Natural</h3>
+        <p>
+            O motor Hanabi v1.0 utiliza arquiteturas avançadas de deep learning para:
+        </p>
+        <ul>
+            <li>Análise semântica profunda de textos</li>
+            <li>Reconhecimento de intenções e entidades</li>
+            <li>Geração de texto coerente e contextual</li>
+            <li>Tradução e interpretação multilíngue</li>
+        </ul>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-text">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Plataforma de IA
-            </div>
-            <h1>
-                Aprenda.<br>
-                Desenvolva.<br>
-                <span class="gradient-text">Evolua.</span>
-            </h1>
-            <p>
-                Inteligência artificial criada para acompanhar o seu crescimento, do primeiro passo à próxima grande ideia. A tecnologia não substitui você — ela caminha ao seu lado.
-            </p>
-            <div class="hero-cta">
-                <a href="https://chat.cici.net.br" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                    Começar agora <span>→</span>
-                </a>
-                <a href="#ecossistema" class="btn-secondary">
-                    Explorar <span>↓</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="hero-visual">
-            <div class="visual-container">
-                <div class="float-card">
-                    <div class="fc-icon">📚</div>
-                    <div class="fc-label">Aprendizado</div>
-                    <div class="fc-value">24/7</div>
+        <h3>Áreas de Conhecimento</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-title">💻 Tecnologia</div>
+                <div class="feature-description">
+                    Programação, desenvolvimento web, IA, DevOps, cloud computing
                 </div>
-                <div class="float-card">
-                    <div class="fc-icon">⚡</div>
-                    <div class="fc-label">Precisão</div>
-                    <div class="fc-value">98%</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">📊 Negócios</div>
+                <div class="feature-description">
+                    Estratégia, marketing, gestão, empreendedorismo, finanças
                 </div>
-                <div class="float-card">
-                    <div class="fc-icon">🚀</div>
-                    <div class="fc-label">Produtos</div>
-                    <div class="fc-value">4+</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🎓 Educação</div>
+                <div class="feature-description">
+                    Tutoria, explicações didáticas, resumos, pesquisa acadêmica
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">✍️ Criatividade</div>
+                <div class="feature-description">
+                    Escrita criativa, brainstorming, design thinking, inovação
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<!-- ═══ STATS ═══ -->
-<div class="stats-band">
-    <div class="stats-grid">
-        <div class="reveal">
-            <div class="stat-number">2025</div>
-            <div class="stat-label">Fundada</div>
-        </div>
-        <div class="reveal">
-            <div class="stat-number">4</div>
-            <div class="stat-label">Produtos</div>
-        </div>
-        <div class="reveal">
-            <div class="stat-number">99.9%</div>
-            <div class="stat-label">Uptime</div>
-        </div>
-        <div class="reveal">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Disponível</div>
-        </div>
-    </div>
+    <div class="content">
+        <h2>💡 Exemplos de Uso</h2>
+        
+        <h3>Desenvolvimento e Programação</h3>
+        <div class="code-block">
+```
+
+“Como posso otimizar esta função Python?”
+“Explique o conceito de programação assíncrona”
+“Crie um exemplo de API REST em Node.js”
 </div>
 
-<!-- ═══ SENA ═══ -->
-<section id="sena">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-tag">Produto Principal</div>
-            <h2 class="section-title">Conheça a <span class="gradient-text">Sena</span></h2>
-            <p class="section-sub">
-                Sena by S.ai+ Apps — nossa plataforma de IA de última geração. Processamento de linguagem natural que entende contexto, aprende com você e entrega respostas que realmente importam.
+```
+        <h3>Análise e Insights</h3>
+        <div class="code-block">
+```
+
+“Analise as tendências do mercado de IA em 2024”
+“Quais são os principais desafios da transformação digital?”
+“Resuma os pontos principais deste documento”
+</div>
+
+```
+        <h3>Criatividade e Conteúdo</h3>
+        <div class="code-block">
+```
+
+“Crie um roteiro para vídeo sobre sustentabilidade”
+“Ajude-me a desenvolver uma campanha de marketing”
+“Sugira títulos criativos para meu blog”
+</div>
+</div>
+
+```
+    <div class="content">
+        <h2>🔐 Segurança e Privacidade</h2>
+        <p>
+            Na <strong>AmplaAI Platforms</strong>, levamos a segurança dos seus dados a sério:
+        </p>
+        <ul>
+            <li><strong>Criptografia:</strong> Todas as comunicações são criptografadas end-to-end</li>
+            <li><strong>Privacidade:</strong> Suas conversas não são utilizadas para treinamento sem consentimento</li>
+            <li><strong>Conformidade:</strong> Aderimos às melhores práticas de proteção de dados</li>
+            <li><strong>Transparência:</strong> Você tem controle sobre suas informações</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>🛡️ Compromisso:</strong> Sua privacidade e segurança são prioridades absolutas. Não compartilhamos dados com terceiros sem autorização explícita.
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>🆘 Suporte e Contato</h2>
+        <p>
+            Nossa equipe está sempre disponível para ajudar você a aproveitar ao máximo o Claudinei.
+        </p>
+
+        <h3>Central de Suporte</h3>
+        <p>
+            Para dúvidas, sugestões ou reportar problemas, entre em contato com nossa equipe:
+        </p>
+        <div class="info-box">
+            <strong>📧 Email de Suporte:</strong><br>
+            <a href="mailto:ampla.ai@outlook.com" class="contact-link">ampla.ai@outlook.com</a>
+        </div>
+
+        <h3>Tempo de Resposta</h3>
+        <ul>
+            <li><strong>Urgente:</strong> 4-8 horas (dias úteis)</li>
+            <li><strong>Normal:</strong> 24-48 horas</li>
+            <li><strong>Consultas gerais:</strong> 2-3 dias úteis</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>📋 Perguntas Frequentes</h2>
+        
+        <h3>O que é o motor Hanabi v1.0?</h3>
+        <p>
+            O Hanabi v1.0 é nosso motor de IA proprietário, desenvolvido especificamente para oferecer compreensão contextual profunda e respostas de alta qualidade em português brasileiro.
+        </p>
+
+        <h3>O Claudinei funciona offline?</h3>
+        <p>
+            Não, o Claudinei requer conexão com a internet para acessar o motor Hanabi v1.0 e processar suas solicitações.
+        </p>
+
+        <h3>Há limites de uso?</h3>
+        <p>
+            Os limites dependem do seu plano de uso. Entre em contato com nosso suporte para informações sobre planos e limites específicos.
+        </p>
+
+        <h3>Posso integrar o Claudinei em meu sistema?</h3>
+        <p>
+            Sim! Oferecemos APIs e soluções de integração para empresas. Entre em contato através do email de suporte para mais informações.
+        </p>
+    </div>
+
+    <div class="content">
+        <h2>🔄 Atualizações e Roadmap</h2>
+        <p>
+            A <strong>AmplaAI Platforms</strong> está constantemente evoluindo o Claudinei. Fique atento às próximas funcionalidades:
+        </p>
+        <ul>
+            <li>Suporte a mais idiomas</li>
+            <li>Integração com ferramentas populares</li>
+            <li>Modos especializados por indústria</li>
+            <li>Melhorias contínuas no Hanabi v1.0</li>
+            <li>Interface mobile nativa</li>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="logo" style="font-size: 1.8em; margin-bottom: 15px;">Claudinei</div>
+        <p><strong>AmplaAI Platforms</strong></p>
+        <p>Desenvolvido com ❤️ usando Hanabi v1.0</p>
+        <div class="contact-info">
+            <p>Suporte: <a href="mailto:ampla.ai@outlook.com" class="contact-link">ampla.ai@outlook.com</a></p>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
+                © 2024 AmplaAI Platforms. Todos os direitos reservados.
             </p>
         </div>
-
-        <div class="features-grid">
-            <div class="feat-card reveal">
-                <span class="feat-icon">🧠</span>
-                <h3>Aprendizado Inteligente</h3>
-                <p>Adapta o conteúdo ao seu ritmo. Não apenas responde — orienta, questiona e guia. Compreensão contextual que entende intenções e necessidades reais.</p>
-            </div>
-            <div class="feat-card reveal">
-                <span class="feat-icon">💡</span>
-                <h3>Contexto que Acompanha</h3>
-                <p>Sistema de memória que analisa seu histórico e adapta respostas ao seu progresso. Aprende seus padrões para entregar suporte cada vez mais relevante.</p>
-            </div>
-            <div class="feat-card reveal">
-                <span class="feat-icon">🔄</span>
-                <h3>Evolução Contínua</h3>
-                <p>Modelos que crescem junto com você. Pipeline MLOps automatizado que refina algoritmos com base em interações reais, sempre um passo à frente.</p>
-            </div>
-            <div class="feat-card reveal">
-                <span class="feat-icon">⚡</span>
-                <h3>Performance Ultra-Rápida</h3>
-                <p>GPUs dedicadas e caching inteligente. Latência média de 200ms para consultas complexas. Resposta instantânea, sem espera, sem frustração.</p>
-            </div>
-            <div class="feat-card reveal">
-                <span class="feat-icon">🔒</span>
-                <h3>Segurança Enterprise</h3>
-                <p>Criptografia end-to-end AES-256, conformidade com LGPD e GDPR. Autenticação OAuth 2.0 e isolamento de dados por tenant. Seus dados são seus.</p>
-            </div>
-            <div class="feat-card reveal">
-                <span class="feat-icon">🌐</span>
-                <h3>API Completa & Flexível</h3>
-                <p>Documentação OpenAPI interativa, SDKs para Python, Node.js e Java. Webhooks em tempo real. Integre a Sena onde você precisa.</p>
-            </div>
-        </div>
-
-        <div class="sena-cta reveal">
-            <a href="https://chat.cici.net.br" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                Acessar a Sena <span>→</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ ECOSSISTEMA ═══ -->
-<section id="ecossistema">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-tag">Ecossistema</div>
-            <h2 class="section-title">O que você pode <span class="gradient-text">fazer</span></h2>
-            <p class="section-sub">
-                Estudar com apoio inteligente. Desenvolver projetos e códigos. Criar conteúdos e ideias. Organizar tarefas e produtividade. Tudo em um só ecossistema.
-            </p>
-        </div>
-
-        <div class="eco-grid">
-            <article class="eco-card reveal">
-                <div class="eco-status active">● Ativo</div>
-                <h3>Sena by S.ai+ Apps</h3>
-                <p>A plataforma principal de IA. Processamento de linguagem natural que aprende com você e entrega respostas que realmente ajudam — seja estudando, criando ou resolvendo problemas.</p>
-                <p>Suporte a múltiplos idiomas, memória de contexto longo e integração via API.</p>
-                <div class="eco-links">
-                    <a href="https://chat.cici.net.br" target="_blank" rel="noopener noreferrer" class="eco-link">🚀 Acessar a Sena</a>
-                </div>
-            </article>
-
-            <article class="eco-card reveal">
-                <div class="eco-status soon">● Em breve</div>
-                <h3>Valora</h3>
-                <p>Ferramenta de análise e avaliação inteligente. Mede progresso real — de projetos a habilidades — com feedback estruturado e dashboards personalizados alimentados por IA.</p>
-                <p>Para quem precisa não apenas produzir, mas entender o que está funcionando.</p>
-                <div class="eco-links">
-                    <span class="eco-link muted">🚀 Lançamento em breve</span>
-                </div>
-            </article>
-
-            <article class="eco-card reveal">
-                <div class="eco-status soon">● Em breve</div>
-                <h3>Sion Code</h3>
-                <p>Ambiente de desenvolvimento assistido por IA. Escreva código mais rápido, depure com mais eficiência e aprenda programação de forma prática — sem manuais densos.</p>
-                <p>Autocompletar contextual e explicações inline. Para quem começa e para quem já sabe.</p>
-                <div class="eco-links">
-                    <span class="eco-link muted">🚀 Lançamento em breve</span>
-                </div>
-            </article>
-
-            <article class="eco-card reveal">
-                <div class="eco-status soon">● Em breve</div>
-                <h3>Sion Pay</h3>
-                <p>Solução de pagamentos integrada ao ecossistema. Monetização de produtos e serviços digitais mais simples, segura e acessível — para criadores e empreendedores.</p>
-                <p>Funciona junto com os outros produtos da Sion.ai, formando um ecossistema completo.</p>
-                <div class="eco-links">
-                    <span class="eco-link muted">🚀 Lançamento em breve</span>
-                </div>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ JORNADA ═══ -->
-<section id="jornada">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-tag">Timeline</div>
-            <h2 class="section-title">Nossa <span class="gradient-text">Jornada</span></h2>
-            <p class="section-sub">Do primeiro algoritmo à plataforma que está sendo construída agora.</p>
-        </div>
-
-        <div class="timeline">
-            <div class="tl-item reveal">
-                <div class="tl-date">Janeiro 2025</div>
-                <h3>Nascimento da S.ai+ Apps</h3>
-                <p>Início oficial com foco em pesquisa e desenvolvimento. Definição da visão: criar uma plataforma de IA que realmente acompanha o crescimento das pessoas.</p>
-            </div>
-            <div class="tl-item reveal">
-                <div class="tl-date">Fevereiro 2025</div>
-                <h3>Desenvolvimento da Sena</h3>
-                <p>Primeiros protótipos baseados em arquiteturas transformer. Testes iniciais com NLP em português, alcançando 85% de precisão em compreensão contextual.</p>
-            </div>
-            <div class="tl-item reveal">
-                <div class="tl-date">Março 2025</div>
-                <h3>Sena Beta Release</h3>
-                <p>Versão beta para grupo seleto de early adopters. Coleta intensiva de feedback e iterações rápidas. Infraestrutura escalando para 1K requisições diárias.</p>
-            </div>
-            <div class="tl-item reveal">
-                <div class="tl-date">Q2 2025</div>
-                <h3>Lançamento do Valora</h3>
-                <p>Primeiro lançamento do Valora — ferramenta de análise e avaliação inteligente integrada à Sena.</p>
-            </div>
-            <div class="tl-item reveal">
-                <div class="tl-date">Q3 2025</div>
-                <h3>Sion Code & Expansão</h3>
-                <p>Ambiente de desenvolvimento assistido por IA. Início da expansão com Sion Pay e parcerias B2B para acelerar crescimento.</p>
-            </div>
-            <div class="tl-item reveal">
-                <div class="tl-date">Q4 2025</div>
-                <h3>Ecossistema Completo</h3>
-                <p>Todos os produtos operando em harmonia. API pública da Sena e início da captação de investimento seed.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ SOBRE ═══ -->
-<section id="sobre">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-tag">Quem Somos</div>
-            <h2 class="section-title">Sobre a <span class="gradient-text">Sion.ai</span></h2>
-        </div>
-
-        <div class="sobre-text">
-            <p class="reveal">A Sion.ai é uma plataforma de inteligência artificial focada em aprendizado, desenvolvimento e evolução contínua de pessoas e produtos. Não somos uma IA genérica que responde tudo igual para todo mundo — somos uma ferramenta que cresce com você.</p>
-            <p class="reveal">Acreditamos que aprender não é consumir informação. É questionar, errar e testar de novo. Desenvolver não é apenas escrever código — é construir ideias que funcionam no mundo real. Evoluir não é um evento, é um processo constante, às vezes desconfortável, sempre necessário.</p>
-            <p class="reveal">Não prometemos atalhos mágicos. Prometemos ferramentas inteligentes que crescem com você. Para criadores, estudantes, desenvolvedores e profissionais cansados do óbvio.</p>
-        </div>
-
-        <div class="manifesto-block reveal">
-            <p>
-                Aprender é o começo.<br>
-                Desenvolver é o caminho.<br>
-                <span class="gradient-text">Evoluir é o objetivo.</span>
-            </p>
-        </div>
-
-        <!-- Team -->
-        <div style="text-align:center; margin-top:5rem;" class="reveal">
-            <h3 class="section-title" style="font-size:2.2rem;">Nosso <span class="gradient-text">Time</span></h3>
-        </div>
-        <div class="team-grid">
-            <div class="team-card reveal">
-                <div class="team-avatar">AI</div>
-                <h4>Naoto Dev</h4>
-                <p class="role">CEO & Co-founder</p>
-            </div>
-            <div class="team-card reveal">
-                <div class="team-avatar">RC</div>
-                <h4>Naoto Dev</h4>
-                <p class="role">CTO & AI Lead</p>
-            </div>
-            <div class="team-card reveal">
-                <div class="team-avatar">MS</div>
-                <h4>Naoto Dev</h4>
-                <p class="role">Product Designer</p>
-            </div>
-            <div class="team-card reveal">
-                <div class="team-avatar">LP</div>
-                <h4>Naoto Dev</h4>
-                <p class="role">ML Engineer</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ CONTATO ═══ -->
-<section id="contato">
-    <div class="container">
-        <div class="section-header reveal">
-            <div class="section-tag">Fale Conosco</div>
-            <h2 class="section-title">Vamos <span class="gradient-text">Crescer</span> Juntos</h2>
-            <p class="section-sub">Entre em contato para parcerias, oportunidades de carreira ou para conversar sobre como a Sion.ai pode ajudar no seu crescimento.</p>
-        </div>
-
-        <div class="contact-grid">
-            <div class="contact-list">
-                <div class="contact-item reveal">
-                    <span class="ci-icon">📧</span>
-                    <div>
-                        <strong>E-mail</strong>
-                        <a href="mailto:contato@sion.ai">ampla.ai@outlook.com</a>
-                    </div>
-                </div>
-                <div class="contact-item reveal">
-                    <span class="ci-icon">📱</span>
-                    <div>
-                        <strong>Instagram</strong>
-                        <a href="https://instagram.com/sion.ai" target="_blank" rel="noopener noreferrer">@sion.ai</a>
-                    </div>
-                </div>
-                <div class="contact-item reveal">
-                    <span class="ci-icon">💼</span>
-                    <div>
-                        <strong>Parcerias</strong>
-                        <a href="mailto:parcerias@sion.ai">ampla.ai@outlook.com</a>
-                    </div>
-                </div>
-            </div>
-
-            <form class="contact-form reveal" onsubmit="handleForm(event)">
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="msg">Mensagem</label>
-                    <textarea id="msg" name="message" placeholder="Como podemos ajudar?" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
-                    Enviar Mensagem <span>→</span>
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
-
-</main>
-
-<!-- ═══ FOOTER ═══ -->
-<footer>
-    <div class="footer-grid">
-        <div class="footer-brand">
-            <h3>Sion.ai</h3>
-            <p>Aprenda. Desenvolva. Evolua.<br>IA que cresce com você.</p>
-            <div class="social-row">
-                <a href="https://instagram.com/sion.ai"  class="social-btn" target="_blank" rel="noopener noreferrer">📱</a>
-                <a href="https://github.com/orpheostudio" class="social-btn" target="_blank" rel="noopener noreferrer">💻</a>
-                <a href="https://linkedin.com/company/sionai" class="social-btn" target="_blank" rel="noopener noreferrer">💼</a>
-            </div>
-        </div>
-
-        <div class="footer-col">
-            <h4>Produtos</h4>
-            <ul>
-                <li><a href="#sena">Sena</a></li>
-                <li><a href="https://chat.cici.net.br" target="_blank" rel="noopener noreferrer">Acessar Sena</a></li>
-                <li><a href="#ecossistema">Valora</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h4>Ecossistema</h4>
-            <ul>
-                <li><a href="#ecossistema">Sion Code</a></li>
-                <li><a href="#ecossistema">Sion Pay</a></li>
-                <li><a href="#sobre">Sobre Nós</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h4>Legal</h4>
-            <ul>
-                <li><a href="https://sion.ai/termos"    target="_blank" rel="noopener noreferrer">Termos de Uso</a></li>
-                <li><a href="https://sion.ai/politicas" target="_blank" rel="noopener noreferrer">Privacidade</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <p>&copy; 2025 Sion.ai — Todos os direitos reservados.</p>
-        <p>Feito com 💜 no Brasil</p>
-    </div>
-</footer>
-
-<!-- scroll-top btn -->
-<button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">↑</button>
-
-<!-- ═══ SCRIPTS ═══ -->
-<script>
-(function(){
-    // ── header scroll ──
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 80);
-    });
-
-    // ── hamburger mobile ──
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('open');
-        });
-    });
-
-    // ── smooth scroll ──
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            e.preventDefault();
-            const target = document.querySelector(a.getAttribute('href'));
-            if (!target) return;
-            const top = target.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({ top, behavior: 'smooth' });
-        });
-    });
-
-    // ── scroll-top button ──
-    const scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-        scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
-    });
-    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
-
-    // ── Intersection Observer – reveal on scroll ──
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-    // ── form handler ──
-    window.handleForm = function(e) {
-        e.preventDefault();
-        alert('Funcionalidade de envio em desenvolvimento!\nPor enquanto, entre em contato por e-mail: ampla.ai@outlook.com');
-    };
-})();
-</script>
+    </footer>
+</div>
+```
 
 </body>
 </html>
