@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Telos Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B3A5C; --navy-deep: #0f2239; --navy-mid: #234875;
+  --gold: #C4973A; --gold-light: #d9af5a; --gold-dim: rgba(196,151,58,0.1);
+  --cream: #F5F0E8; --white: #FAFAF8;
+  --muted: rgba(245,240,232,0.45); --muted2: rgba(245,240,232,0.28);
+  --border: rgba(196,151,58,0.18); --border-subtle: rgba(245,240,232,0.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy-deep); color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(196,151,58,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 60% at 20% 90%, rgba(27,58,92,0.5) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 68px;
+  background: rgba(15,34,57,0.88); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--white);
+  text-decoration: none; display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 28px; height: 28px; border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--navy-deep); background: var(--gold); border: none; padding: 9px 22px;
+  cursor: pointer; text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+
+/* ── HERO ── */
+.page-hero {
+  position: relative; z-index: 1;
+  padding: 80px 56px 48px;
+  max-width: 1100px; margin: 0 auto;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 0.66rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px;
+}
+.page-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300;
+  line-height: 1.05; color: var(--white); letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+.page-h1 em { font-style: italic; color: var(--gold); }
+.page-sub { font-size: 0.9rem; color: var(--muted); max-width: 500px; line-height: 1.7; }
+
+/* ── LAYOUT ── */
+.blog-layout {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 56px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: start;
+}
+
+/* ── FEATURED ── */
+.featured-post {
+  border: 1px solid var(--border);
+  background: rgba(15,34,57,0.5);
+  margin-bottom: 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden; transition: border-color 0.25s;
+  cursor: pointer; text-decoration: none; display: block;
+}
+.featured-post:hover { border-color: var(--gold); }
+.featured-visual {
+  background: var(--navy-mid);
+  min-height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  border-right: 1px solid var(--border-subtle);
+}
+.featured-visual-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  padding: 32px; width: 100%;
+}
+.feat-metric {
+  border: 1px solid var(--border-subtle); padding: 14px;
+  background: rgba(15,34,57,0.6);
+}
+.feat-metric-val {
+  font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+  font-weight: 300; color: var(--white); line-height: 1;
+  margin-bottom: 4px;
+}
+.feat-metric-val span { color: var(--gold); font-size: 1.2rem; }
+.feat-metric-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.featured-content { padding: 36px 32px; display: flex; flex-direction: column; justify-content: center; }
+.post-category {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 12px;
+}
+.featured-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.9rem;
+  font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 14px;
+}
+.featured-title em { font-style: italic; color: var(--gold); }
+.post-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+.post-meta { display: flex; align-items: center; gap: 16px; }
+.post-date {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.1em; color: var(--muted2); text-transform: uppercase;
+}
+.read-more {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 6px;
+}
+.read-more::after { content: '→'; }
+
+/* ── POSTS GRID ── */
+.posts-section-label {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.posts-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-subtle); }
+
+.posts-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border-subtle); border: 1px solid var(--border-subtle);
+  margin-bottom: 40px;
+}
+.post-card {
+  background: var(--navy-deep); padding: 28px 24px;
+  transition: background 0.2s; cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
+.post-card:hover {
+  background: rgba(27,58,92,0.35);
+  border-left-color: var(--gold);
+}
+.post-card-category {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.post-card-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+  font-weight: 300; color: var(--white); line-height: 1.3; margin-bottom: 10px;
+}
+.post-card-title em { font-style: italic; color: var(--gold-light); }
+.post-card-excerpt { font-size: 0.78rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+.post-card-meta { display: flex; align-items: center; justify-content: space-between; }
+.post-card-date { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted2); letter-spacing: 0.08em; }
+.post-card-arrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold); opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+.post-card:hover .post-card-arrow { opacity: 1; transform: translateX(0); }
+
+/* ── SIDEBAR ── */
+.blog-sidebar { display: flex; flex-direction: column; gap: 32px; position: sticky; top: 88px; }
+
+.sidebar-widget { border: 1px solid var(--border-subtle); padding: 28px; }
+.widget-title {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Categories */
+.cat-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.cat-list li a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; font-size: 0.8rem; color: var(--muted);
+  text-decoration: none; border-bottom: 1px solid var(--border-subtle);
+  transition: color 0.2s;
+}
+.cat-list li:last-child a { border-bottom: none; }
+.cat-list li a:hover { color: var(--gold); }
+.cat-count {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  color: var(--muted2); padding: 1px 6px; border: 1px solid var(--border-subtle);
+}
+
+/* Newsletter */
+.newsletter-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.newsletter-input {
+  width: 100%; background: transparent; border: 1px solid var(--border-subtle);
+  color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 0.8rem;
+  padding: 10px 12px; margin-bottom: 8px; outline: none;
+  transition: border-color 0.2s;
+}
+.newsletter-input:focus { border-color: var(--gold); }
+.newsletter-input::placeholder { color: var(--muted2); }
+.newsletter-btn {
+  width: 100%; padding: 10px; background: var(--gold); border: none;
+  color: var(--navy-deep); font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+}
+.newsletter-btn:hover { background: var(--gold-light); }
+
+/* Tags */
+.tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px solid var(--border-subtle); color: var(--muted);
+  padding: 4px 10px; cursor: pointer; transition: all 0.2s;
+}
+.tag:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── ARTICLE OVERLAY ── */
+.article-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--navy-deep);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.article-overlay.open { transform: translateX(0); }
+.article-nav {
+  position: sticky; top: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 64px;
+  background: rgba(15,34,57,0.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle); z-index: 10;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  cursor: pointer; border: none; background: none; transition: color 0.2s;
+}
+.back-btn:hover { color: var(--gold); }
+.article-body {
+  max-width: 720px; margin: 0 auto; padding: 64px 48px 80px;
+}
+.article-cat {
+  font-family: 'DM Mono', monospace; font-size: 0.64rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.article-h1 {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 20px;
+}
+.article-h1 em { font-style: italic; color: var(--gold); }
+.article-date {
+  font-family: 'DM Mono', monospace; font-size: 0.64rem;
+  letter-spacing: 0.1em; color: var(--muted2); margin-bottom: 40px;
+  padding-bottom: 32px; border-bottom: 1px solid var(--border-subtle);
+}
+.article-content p {
+  font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 24px;
+}
+.article-content p strong { color: var(--cream); font-weight: 500; }
+.article-content h2 {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+  font-weight: 300; color: var(--white); margin: 40px 0 16px;
+}
+.article-content h2 em { font-style: italic; color: var(--gold); }
+.article-content ul { list-style: none; padding: 0; margin-bottom: 24px; }
+.article-content ul li {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.8;
+  padding-left: 20px; position: relative; margin-bottom: 6px;
+}
+.article-content ul li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--gold); font-family: 'DM Mono', monospace;
+}
+.article-content blockquote {
+  border-left: 2px solid var(--gold); padding: 20px 24px;
+  background: var(--gold-dim); margin: 28px 0;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+  font-style: italic; color: var(--cream); line-height: 1.6;
+}
+.article-highlight {
+  border: 1px solid var(--border); padding: 24px; margin: 28px 0;
+  background: rgba(15,34,57,0.6);
+}
+.article-highlight-label {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.article-highlight p { margin-bottom: 0 !important; font-size: 0.85rem !important; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1; border-top: 1px solid var(--border);
+  padding: 40px 56px; display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 24px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--muted);
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-logo-mark {
+  width: 20px; height: 20px; border: 1px solid rgba(196,151,58,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.footer-nav { display: flex; gap: 24px; list-style: none; }
+.footer-nav a {
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--gold); }
+.footer-right {
+  text-align: right; font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  color: rgba(245,240,232,0.25); letter-spacing: 0.05em;
+}
+.footer-right a { color: var(--gold); text-decoration: none; }
+
+/* ── UTILS ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .page-hero { padding: 64px 24px 40px; }
+  .blog-layout { grid-template-columns: 1fr; padding: 32px 24px; }
+  .blog-sidebar { display: none; }
+  .featured-post { grid-template-columns: 1fr; }
+  .featured-visual { min-height: 200px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-right { text-align: center; }
+  .article-nav, .article-body { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Telos Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B3A5C; --navy-deep: #0f2239; --navy-mid: #234875;
+  --gold: #C4973A; --gold-light: #d9af5a; --gold-dim: rgba(196,151,58,0.1);
+  --cream: #F5F0E8; --white: #FAFAF8;
+  --muted: rgba(245,240,232,0.45); --muted2: rgba(245,240,232,0.28);
+  --border: rgba(196,151,58,0.18); --border-subtle: rgba(245,240,232,0.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy-deep); color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(196,151,58,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 60% at 20% 90%, rgba(27,58,92,0.5) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 68px;
+  background: rgba(15,34,57,0.88); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--white);
+  text-decoration: none; display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 28px; height: 28px; border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--navy-deep); background: var(--gold); border: none; padding: 9px 22px;
+  cursor: pointer; text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+
+/* ── HERO ── */
+.page-hero {
+  position: relative; z-index: 1;
+  padding: 80px 56px 48px;
+  max-width: 1100px; margin: 0 auto;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 0.66rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px;
+}
+.page-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300;
+  line-height: 1.05; color: var(--white); letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+.page-h1 em { font-style: italic; color: var(--gold); }
+.page-sub { font-size: 0.9rem; color: var(--muted); max-width: 500px; line-height: 1.7; }
+
+/* ── LAYOUT ── */
+.blog-layout {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 56px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: start;
+}
+
+/* ── FEATURED ── */
+.featured-post {
+  border: 1px solid var(--border);
+  background: rgba(15,34,57,0.5);
+  margin-bottom: 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden; transition: border-color 0.25s;
+  cursor: pointer; text-decoration: none; display: block;
+}
+.featured-post:hover { border-color: var(--gold); }
+.featured-visual {
+  background: var(--navy-mid);
+  min-height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  border-right: 1px solid var(--border-subtle);
+}
+.featured-visual-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  padding: 32px; width: 100%;
+}
+.feat-metric {
+  border: 1px solid var(--border-subtle); padding: 14px;
+  background: rgba(15,34,57,0.6);
+}
+.feat-metric-val {
+  font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+  font-weight: 300; color: var(--white); line-height: 1;
+  margin-bottom: 4px;
+}
+.feat-metric-val span { color: var(--gold); font-size: 1.2rem; }
+.feat-metric-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.featured-content { padding: 36px 32px; display: flex; flex-direction: column; justify-content: center; }
+.post-category {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 12px;
+}
+.featured-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.9rem;
+  font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 14px;
+}
+.featured-title em { font-style: italic; color: var(--gold); }
+.post-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+.post-meta { display: flex; align-items: center; gap: 16px; }
+.post-date {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.1em; color: var(--muted2); text-transform: uppercase;
+}
+.read-more {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 6px;
+}
+.read-more::after { content: '→'; }
+
+/* ── POSTS GRID ── */
+.posts-section-label {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.posts-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-subtle); }
+
+.posts-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border-subtle); border: 1px solid var(--border-subtle);
+  margin-bottom: 40px;
+}
+.post-card {
+  background: var(--navy-deep); padding: 28px 24px;
+  transition: background 0.2s; cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
+.post-card:hover {
+  background: rgba(27,58,92,0.35);
+  border-left-color: var(--gold);
+}
+.post-card-category {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.post-card-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+  font-weight: 300; color: var(--white); line-height: 1.3; margin-bottom: 10px;
+}
+.post-card-title em { font-style: italic; color: var(--gold-light); }
+.post-card-excerpt { font-size: 0.78rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+.post-card-meta { display: flex; align-items: center; justify-content: space-between; }
+.post-card-date { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted2); letter-spacing: 0.08em; }
+.post-card-arrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold); opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+.post-card:hover .post-card-arrow { opacity: 1; transform: translateX(0); }
+
+/* ── SIDEBAR ── */
+.blog-sidebar { display: flex; flex-direction: column; gap: 32px; position: sticky; top: 88px; }
+
+.sidebar-widget { border: 1px solid var(--border-subtle); padding: 28px; }
+.widget-title {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Categories */
+.cat-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.cat-list li a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; font-size: 0.8rem; color: var(--muted);
+  text-decoration: none; border-bottom: 1px solid var(--border-subtle);
+  transition: color 0.2s;
+}
+.cat-list li:last-child a { border-bottom: none; }
+.cat-list li a:hover { color: var(--gold); }
+.cat-count {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  color: var(--muted2); padding: 1px 6px; border: 1px solid var(--border-subtle);
+}
+
+/* Newsletter */
+.newsletter-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.newsletter-input {
+  width: 100%; background: transparent; border: 1px solid var(--border-subtle);
+  color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 0.8rem;
+  padding: 10px 12px; margin-bottom: 8px; outline: none;
+  transition: border-color 0.2s;
+}
+.newsletter-input:focus { border-color: var(--gold); }
+.newsletter-input::placeholder { color: var(--muted2); }
+.newsletter-btn {
+  width: 100%; padding: 10px; background: var(--gold); border: none;
+  color: var(--navy-deep); font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+}
+.newsletter-btn:hover { background: var(--gold-light); }
+
+/* Tags */
+.tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px solid var(--border-subtle); color: var(--muted);
+  padding: 4px 10px; cursor: pointer; transition: all 0.2s;
+}
+.tag:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── ARTICLE OVERLAY ── */
+.article-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--navy-deep);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.article-overlay.open { transform: translateX(0); }
+.article-nav {
+  position: sticky; top: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 64px;
+  background: rgba(15,34,57,0.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle); z-index: 10;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  cursor: pointer; border: none; background: none; transition: color 0.2s;
+}
+.back-btn:hover { color: var(--gold); }
+.article-body {
+  max-width: 720px; margin: 0 auto; padding: 64px 48px 80px;
+}
+.article-cat {
+  font-family: 'DM Mono', monospace; font-size: 0.64rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.article-h1 {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 20px;
+}
+.article-h1 em { font-style: italic; color: var(--gold); }
+.article-date {
+  font-family: 'DM Mono', monospace; font-size: 0.64rem;
+  letter-spacing: 0.1em; color: var(--muted2); margin-bottom: 40px;
+  padding-bottom: 32px; border-bottom: 1px solid var(--border-subtle);
+}
+.article-content p {
+  font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 24px;
+}
+.article-content p strong { color: var(--cream); font-weight: 500; }
+.article-content h2 {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+  font-weight: 300; color: var(--white); margin: 40px 0 16px;
+}
+.article-content h2 em { font-style: italic; color: var(--gold); }
+.article-content ul { list-style: none; padding: 0; margin-bottom: 24px; }
+.article-content ul li {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.8;
+  padding-left: 20px; position: relative; margin-bottom: 6px;
+}
+.article-content ul li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--gold); font-family: 'DM Mono', monospace;
+}
+.article-content blockquote {
+  border-left: 2px solid var(--gold); padding: 20px 24px;
+  background: var(--gold-dim); margin: 28px 0;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+  font-style: italic; color: var(--cream); line-height: 1.6;
+}
+.article-highlight {
+  border: 1px solid var(--border); padding: 24px; margin: 28px 0;
+  background: rgba(15,34,57,0.6);
+}
+.article-highlight-label {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.article-highlight p { margin-bottom: 0 !important; font-size: 0.85rem !important; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1; border-top: 1px solid var(--border);
+  padding: 40px 56px; display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 24px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--muted);
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-logo-mark {
+  width: 20px; height: 20px; border: 1px solid rgba(196,151,58,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.footer-nav { display: flex; gap: 24px; list-style: none; }
+.footer-nav a {
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--gold); }
+.footer-right {
+  text-align: right; font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  color: rgba(245,240,232,0.25); letter-spacing: 0.05em;
+}
+.footer-right a { color: var(--gold); text-decoration: none; }
+
+/* ── UTILS ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .page-hero { padding: 64px 24px 40px; }
+  .blog-layout { grid-template-columns: 1fr; padding: 32px 24px; }
+  .blog-sidebar { display: none; }
+  .featured-post { grid-template-columns: 1fr; }
+  .featured-visual { min-height: 200px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-right { text-align: center; }
+  .article-nav, .article-body { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">T</div>
+    Telos
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Produto</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="precos.html">Preços</a></li>
+  </ul>
+  <a href="precos.html" class="nav-cta">Começar grátis</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-eyebrow">Blog &amp; Novidades</div>
+  <h1 class="page-h1">Telos <em>Lab</em></h1>
+  <p class="page-sub">Artigos sobre IA, engenharia de modelos, o mercado brasileiro de tecnologia e a construção do Motor Sena.</p>
+</div>
+
+<!-- LAYOUT -->
+<div class="blog-layout">
+  <div class="blog-main">
+
+    <!-- FEATURED -->
+    <div class="posts-section-label">Em destaque</div>
+    <div class="featured-post reveal" onclick="openArticle('sena')">
+      <div class="featured-visual">
+        <div class="featured-visual-inner">
+          <div class="feat-metric"><div class="feat-metric-val">128<span>K</span></div><div class="feat-metric-label">Contexto Pro</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">25<span>M</span></div><div class="feat-metric-label">Parâmetros</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">180<span>ms</span></div><div class="feat-metric-label">Latência Flash</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">3<span>×</span></div><div class="feat-metric-label">Variantes</div></div>
+        </div>
+      </div>
+      <div class="featured-content">
+        <div class="post-category">Engenharia de modelos</div>
+        <div class="featured-title">Apresentando o <em>Motor Sena V1.0</em>: como construímos um Transformer Decoder em Java para o português</div>
+        <p class="post-excerpt">Do zero ao deploy em produção: a história técnica por trás do motor de inferência que alimenta o Claudinei — backpropagation, AdamW, Redis rate limiting e Traefik HTTPS.</p>
+        <div class="post-meta">
+          <span class="post-date">Janeiro 2025</span>
+          <span class="read-more">Ler artigo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSTS -->
+    <div class="posts-section-label">Publicações recentes</div>
+    <div class="posts-grid reveal">
+      <div class="post-card" onclick="openArticle('lgpd')">
+        <div class="post-card-category">LGPD &amp; Dados</div>
+        <div class="post-card-title">Como implementamos <em>conformidade LGPD</em> nativa desde o primeiro commit</div>
+        <p class="post-card-excerpt">A LGPD não pode ser adicionada depois. Mostramos como estruturamos arquitetura, contratos de dados e políticas de retenção desde o dia zero.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Dezembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('vs')">
+        <div class="post-card-category">Mercado</div>
+        <div class="post-card-title">Claudinei vs. GPT-4 em <em>português brasileiro</em>: onde cada um brilha</div>
+        <p class="post-card-excerpt">Comparação objetiva de benchmarks, latência e custo entre modelos genéricos e um modelo treinado especificamente para o português.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Novembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('infra')">
+        <div class="post-card-category">Infraestrutura</div>
+        <div class="post-card-title">Stack completo de produção: <em>Railway, Supabase, Cloudflare e BetterStack</em></div>
+        <p class="post-card-excerpt">Como escolhemos e integramos as ferramentas que mantêm o Claudinei disponível 24/7 com 99,9% de uptime e custo previsível.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Outubro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('familia')">
+        <div class="post-card-category">Produto</div>
+        <div class="post-card-title">Família Claudinei: <em>cinco produtos</em>, um motor</div>
+        <p class="post-card-excerpt">Sion AI, Tinta, Aion AI, app Android, chatbot web — como um único motor de inferência alimenta um ecossistema inteiro de produtos diferentes.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Setembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('tokens')">
+        <div class="post-card-category">Engenharia</div>
+        <div class="post-card-title">Por que o português tem <em>30% mais tokens</em> que o inglês — e o que fizemos a respeito</div>
+        <p class="post-card-excerpt">Análise de tokenização em diferentes idiomas e como otimizamos o vocabulário do Sena V1.0 para reduzir custo e melhorar compreensão.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Agosto 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('admob')">
+        <div class="post-card-category">Produto</div>
+        <div class="post-card-title">Monetização de <em>apps de IA no Brasil</em>: AdMob, AdSense e LGPD</div>
+        <p class="post-card-excerpt">Como implementamos consentimento LGPD-compliant com monetização via Google AdMob no app Android e AdSense no web — sem sacrificar experiência do usuário.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Julho 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="blog-sidebar">
+    <div class="sidebar-widget">
+      <div class="widget-title">Categorias</div>
+      <ul class="cat-list">
+        <li><a href="#">Engenharia de modelos <span class="cat-count">3</span></a></li>
+        <li><a href="#">Produto <span class="cat-count">4</span></a></li>
+        <li><a href="#">Infraestrutura <span class="cat-count">2</span></a></li>
+        <li><a href="#">LGPD &amp; Dados <span class="cat-count">2</span></a></li>
+        <li><a href="#">Mercado <span class="cat-count">1</span></a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Newsletter</div>
+      <p class="newsletter-desc">Receba artigos sobre IA brasileira, atualizações do Motor Sena e novidades da Telos.</p>
+      <input type="email" class="newsletter-input" placeholder="seu@email.com.br">
+      <button class="newsletter-btn" onclick="subscribeNewsletter(this)">Inscrever-se</button>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Tags</div>
+      <div class="tags-wrap">
+        <span class="tag">Motor Sena</span>
+        <span class="tag">Transformer</span>
+        <span class="tag">LGPD</span>
+        <span class="tag">API</span>
+        <span class="tag">Brasil</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Railway</span>
+        <span class="tag">AdMob</span>
+        <span class="tag">Java AI</span>
+        <span class="tag">Tokenização</span>
+        <span class="tag">Claudinei</span>
+        <span class="tag">PWA</span>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Contato</div>
+      <p class="newsletter-desc">Para parcerias, imprensa ou colaborações editoriais.</p>
+      <a href="mailto:ampla.ai@outlook.com" style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gold); text-decoration:none; letter-spacing:0.08em;">ampla.ai@outlook.com</a>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Telos Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B3A5C; --navy-deep: #0f2239; --navy-mid: #234875;
+  --gold: #C4973A; --gold-light: #d9af5a; --gold-dim: rgba(196,151,58,0.1);
+  --cream: #F5F0E8; --white: #FAFAF8;
+  --muted: rgba(245,240,232,0.45); --muted2: rgba(245,240,232,0.28);
+  --border: rgba(196,151,58,0.18); --border-subtle: rgba(245,240,232,0.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy-deep); color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(196,151,58,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 60% at 20% 90%, rgba(27,58,92,0.5) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 68px;
+  background: rgba(15,34,57,0.88); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--white);
+  text-decoration: none; display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 28px; height: 28px; border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--navy-deep); background: var(--gold); border: none; padding: 9px 22px;
+  cursor: pointer; text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+
+/* ── HERO ── */
+.page-hero {
+  position: relative; z-index: 1;
+  padding: 80px 56px 48px;
+  max-width: 1100px; margin: 0 auto;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 0.66rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px;
+}
+.page-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300;
+  line-height: 1.05; color: var(--white); letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+.page-h1 em { font-style: italic; color: var(--gold); }
+.page-sub { font-size: 0.9rem; color: var(--muted); max-width: 500px; line-height: 1.7; }
+
+/* ── LAYOUT ── */
+.blog-layout {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 56px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: start;
+}
+
+/* ── FEATURED ── */
+.featured-post {
+  border: 1px solid var(--border);
+  background: rgba(15,34,57,0.5);
+  margin-bottom: 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden; transition: border-color 0.25s;
+  cursor: pointer; text-decoration: none; display: block;
+}
+.featured-post:hover { border-color: var(--gold); }
+.featured-visual {
+  background: var(--navy-mid);
+  min-height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  border-right: 1px solid var(--border-subtle);
+}
+.featured-visual-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  padding: 32px; width: 100%;
+}
+.feat-metric {
+  border: 1px solid var(--border-subtle); padding: 14px;
+  background: rgba(15,34,57,0.6);
+}
+.feat-metric-val {
+  font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+  font-weight: 300; color: var(--white); line-height: 1;
+  margin-bottom: 4px;
+}
+.feat-metric-val span { color: var(--gold); font-size: 1.2rem; }
+.feat-metric-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.featured-content { padding: 36px 32px; display: flex; flex-direction: column; justify-content: center; }
+.post-category {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 12px;
+}
+.featured-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.9rem;
+  font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 14px;
+}
+.featured-title em { font-style: italic; color: var(--gold); }
+.post-excerpt { font-size: 0.83rem; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+.post-meta { display: flex; align-items: center; gap: 16px; }
+.post-date {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.1em; color: var(--muted2); text-transform: uppercase;
+}
+.read-more {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 6px;
+}
+.read-more::after { content: '→'; }
+
+/* ── POSTS GRID ── */
+.posts-section-label {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.posts-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-subtle); }
+
+.posts-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--border-subtle); border: 1px solid var(--border-subtle);
+  margin-bottom: 40px;
+}
+.post-card {
+  background: var(--navy-deep); padding: 28px 24px;
+  transition: background 0.2s; cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
+.post-card:hover {
+  background: rgba(27,58,92,0.35);
+  border-left-color: var(--gold);
+}
+.post-card-category {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.post-card-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+  font-weight: 300; color: var(--white); line-height: 1.3; margin-bottom: 10px;
+}
+.post-card-title em { font-style: italic; color: var(--gold-light); }
+.post-card-excerpt { font-size: 0.78rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+.post-card-meta { display: flex; align-items: center; justify-content: space-between; }
+.post-card-date { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--muted2); letter-spacing: 0.08em; }
+.post-card-arrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold); opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
+.post-card:hover .post-card-arrow { opacity: 1; transform: translateX(0); }
+
+/* ── SIDEBAR ── */
+.blog-sidebar { display: flex; flex-direction: column; gap: 32px; position: sticky; top: 88px; }
+
+.sidebar-widget { border: 1px solid var(--border-subtle); padding: 28px; }
+.widget-title {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Categories */
+.cat-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.cat-list li a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; font-size: 0.8rem; color: var(--muted);
+  text-decoration: none; border-bottom: 1px solid var(--border-subtle);
+  transition: color 0.2s;
+}
+.cat-list li:last-child a { border-bottom: none; }
+.cat-list li a:hover { color: var(--gold); }
+.cat-count {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  color: var(--muted2); padding: 1px 6px; border: 1px solid var(--border-subtle);
+}
+
+/* Newsletter */
+.newsletter-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.newsletter-input {
+  width: 100%; background: transparent; border: 1px solid var(--border-subtle);
+  color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 0.8rem;
+  padding: 10px 12px; margin-bottom: 8px; outline: none;
+  transition: border-color 0.2s;
+}
+.newsletter-input:focus { border-color: var(--gold); }
+.newsletter-input::placeholder { color: var(--muted2); }
+.newsletter-btn {
+  width: 100%; padding: 10px; background: var(--gold); border: none;
+  color: var(--navy-deep); font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+}
+.newsletter-btn:hover { background: var(--gold-light); }
+
+/* Tags */
+.tags-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px solid var(--border-subtle); color: var(--muted);
+  padding: 4px 10px; cursor: pointer; transition: all 0.2s;
+}
+.tag:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── ARTICLE OVERLAY ── */
+.article-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--navy-deep);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.article-overlay.open { transform: translateX(0); }
+.article-nav {
+  position: sticky; top: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 64px;
+  background: rgba(15,34,57,0.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle); z-index: 10;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  cursor: pointer; border: none; background: none; transition: color 0.2s;
+}
+.back-btn:hover { color: var(--gold); }
+.article-body {
+  max-width: 720px; margin: 0 auto; padding: 64px 48px 80px;
+}
+.article-cat {
+  font-family: 'DM Mono', monospace; font-size: 0.64rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.article-h1 {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 20px;
+}
+.article-h1 em { font-style: italic; color: var(--gold); }
+.article-date {
+  font-family: 'DM Mono', monospace; font-size: 0.64rem;
+  letter-spacing: 0.1em; color: var(--muted2); margin-bottom: 40px;
+  padding-bottom: 32px; border-bottom: 1px solid var(--border-subtle);
+}
+.article-content p {
+  font-size: 0.95rem; color: var(--muted); line-height: 1.85; margin-bottom: 24px;
+}
+.article-content p strong { color: var(--cream); font-weight: 500; }
+.article-content h2 {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+  font-weight: 300; color: var(--white); margin: 40px 0 16px;
+}
+.article-content h2 em { font-style: italic; color: var(--gold); }
+.article-content ul { list-style: none; padding: 0; margin-bottom: 24px; }
+.article-content ul li {
+  font-size: 0.9rem; color: var(--muted); line-height: 1.8;
+  padding-left: 20px; position: relative; margin-bottom: 6px;
+}
+.article-content ul li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--gold); font-family: 'DM Mono', monospace;
+}
+.article-content blockquote {
+  border-left: 2px solid var(--gold); padding: 20px 24px;
+  background: var(--gold-dim); margin: 28px 0;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+  font-style: italic; color: var(--cream); line-height: 1.6;
+}
+.article-highlight {
+  border: 1px solid var(--border); padding: 24px; margin: 28px 0;
+  background: rgba(15,34,57,0.6);
+}
+.article-highlight-label {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.article-highlight p { margin-bottom: 0 !important; font-size: 0.85rem !important; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1; border-top: 1px solid var(--border);
+  padding: 40px 56px; display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 24px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--muted);
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-logo-mark {
+  width: 20px; height: 20px; border: 1px solid rgba(196,151,58,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.footer-nav { display: flex; gap: 24px; list-style: none; }
+.footer-nav a {
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--gold); }
+.footer-right {
+  text-align: right; font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  color: rgba(245,240,232,0.25); letter-spacing: 0.05em;
+}
+.footer-right a { color: var(--gold); text-decoration: none; }
+
+/* ── UTILS ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .page-hero { padding: 64px 24px 40px; }
+  .blog-layout { grid-template-columns: 1fr; padding: 32px 24px; }
+  .blog-sidebar { display: none; }
+  .featured-post { grid-template-columns: 1fr; }
+  .featured-visual { min-height: 200px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-right { text-align: center; }
+  .article-nav, .article-body { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <a href="https://i.imgur.com/uTkYfm6.jpeg"
+    <div class="nav-logo-mark">T</div>
+    Telos
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Produto</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="precos.html">Preços</a></li>
+  </ul>
+  <a href="precos.html" class="nav-cta">Começar grátis</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-eyebrow">Blog &amp; Novidades</div>
+  <h1 class="page-h1">Telos <em>Lab</em></h1>
+  <p class="page-sub">Artigos sobre IA, engenharia de modelos, o mercado brasileiro de tecnologia e a construção do Motor Sena.</p>
+</div>
+
+<!-- LAYOUT -->
+<div class="blog-layout">
+  <div class="blog-main">
+
+    <!-- FEATURED -->
+    <div class="posts-section-label">Em destaque</div>
+    <div class="featured-post reveal" onclick="openArticle('sena')">
+      <div class="featured-visual">
+        <div class="featured-visual-inner">
+          <div class="feat-metric"><div class="feat-metric-val">128<span>K</span></div><div class="feat-metric-label">Contexto Pro</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">25<span>M</span></div><div class="feat-metric-label">Parâmetros</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">180<span>ms</span></div><div class="feat-metric-label">Latência Flash</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">3<span>×</span></div><div class="feat-metric-label">Variantes</div></div>
+        </div>
+      </div>
+      <div class="featured-content">
+        <div class="post-category">Engenharia de modelos</div>
+        <div class="featured-title">Apresentando o <em>Motor Sena V1.0</em>: como construímos um Transformer Decoder em Java para o português</div>
+        <p class="post-excerpt">Do zero ao deploy em produção: a história técnica por trás do motor de inferência que alimenta o Claudinei — backpropagation, AdamW, Redis rate limiting e Traefik HTTPS.</p>
+        <div class="post-meta">
+          <span class="post-date">Janeiro 2025</span>
+          <span class="read-more">Ler artigo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSTS -->
+    <div class="posts-section-label">Publicações recentes</div>
+    <div class="posts-grid reveal">
+      <div class="post-card" onclick="openArticle('lgpd')">
+        <div class="post-card-category">LGPD &amp; Dados</div>
+        <div class="post-card-title">Como implementamos <em>conformidade LGPD</em> nativa desde o primeiro commit</div>
+        <p class="post-card-excerpt">A LGPD não pode ser adicionada depois. Mostramos como estruturamos arquitetura, contratos de dados e políticas de retenção desde o dia zero.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Dezembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('vs')">
+        <div class="post-card-category">Mercado</div>
+        <div class="post-card-title">Claudinei vs. GPT-4 em <em>português brasileiro</em>: onde cada um brilha</div>
+        <p class="post-card-excerpt">Comparação objetiva de benchmarks, latência e custo entre modelos genéricos e um modelo treinado especificamente para o português.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Novembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('infra')">
+        <div class="post-card-category">Infraestrutura</div>
+        <div class="post-card-title">Stack completo de produção: <em>Railway, Supabase, Cloudflare e BetterStack</em></div>
+        <p class="post-card-excerpt">Como escolhemos e integramos as ferramentas que mantêm o Claudinei disponível 24/7 com 99,9% de uptime e custo previsível.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Outubro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('familia')">
+        <div class="post-card-category">Produto</div>
+        <div class="post-card-title">Família Claudinei: <em>cinco produtos</em>, um motor</div>
+        <p class="post-card-excerpt">Sion AI, Tinta, Aion AI, app Android, chatbot web — como um único motor de inferência alimenta um ecossistema inteiro de produtos diferentes.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Setembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('tokens')">
+        <div class="post-card-category">Engenharia</div>
+        <div class="post-card-title">Por que o português tem <em>30% mais tokens</em> que o inglês — e o que fizemos a respeito</div>
+        <p class="post-card-excerpt">Análise de tokenização em diferentes idiomas e como otimizamos o vocabulário do Sena V1.0 para reduzir custo e melhorar compreensão.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Agosto 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('admob')">
+        <div class="post-card-category">Produto</div>
+        <div class="post-card-title">Monetização de <em>apps de IA no Brasil</em>: AdMob, AdSense e LGPD</div>
+        <p class="post-card-excerpt">Como implementamos consentimento LGPD-compliant com monetização via Google AdMob no app Android e AdSense no web — sem sacrificar experiência do usuário.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Julho 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="blog-sidebar">
+    <div class="sidebar-widget">
+      <div class="widget-title">Categorias</div>
+      <ul class="cat-list">
+        <li><a href="#">Engenharia de modelos <span class="cat-count">3</span></a></li>
+        <li><a href="#">Produto <span class="cat-count">4</span></a></li>
+        <li><a href="#">Infraestrutura <span class="cat-count">2</span></a></li>
+        <li><a href="#">LGPD &amp; Dados <span class="cat-count">2</span></a></li>
+        <li><a href="#">Mercado <span class="cat-count">1</span></a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Newsletter</div>
+      <p class="newsletter-desc">Receba artigos sobre IA brasileira, atualizações do Motor Sena e novidades da Telos.</p>
+      <input type="email" class="newsletter-input" placeholder="seu@email.com.br">
+      <button class="newsletter-btn" onclick="subscribeNewsletter(this)">Inscrever-se</button>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Tags</div>
+      <div class="tags-wrap">
+        <span class="tag">Motor Sena</span>
+        <span class="tag">Transformer</span>
+        <span class="tag">LGPD</span>
+        <span class="tag">API</span>
+        <span class="tag">Brasil</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Railway</span>
+        <span class="tag">AdMob</span>
+        <span class="tag">Java AI</span>
+        <span class="tag">Tokenização</span>
+        <span class="tag">Claudinei</span>
+        <span class="tag">PWA</span>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Contato</div>
+      <p class="newsletter-desc">Para parcerias, imprensa ou colaborações editoriais.</p>
+      <a href="mailto:ampla.ai@outlook.com" style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gold); text-decoration:none; letter-spacing:0.08em;">ampla.ai@outlook.com</a>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <a href="https://i.imgur.com/uTkYfm6.jpeg"
+    <div class="footer-logo-mark">T</div>
+    Telos Technologies
+  </div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="precos.html">Preços</a></li>
+  </ul>
+  <div class="footer-right">
+    <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a><br>
+    © 2025 Tellos Tecnologia LTDA.
+  </div>
+</footer>
+
+<!-- ARTICLE OVERLAY -->
+<div class="article-overlay" id="article-overlay">
+  <div class="article-nav">
+    <button class="back-btn" onclick="closeArticle()">← Voltar ao blog</button>
+    <span style="font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted2); letter-spacing:0.1em; text-transform:uppercase;">Telos Lab</span>
+  </div>
+  <div class="article-body" id="article-body"></div>
+</div>
+
+<script>
+const articles = {
+  sena: {
+    cat: 'Engenharia de modelos',
+    title: 'Apresentando o <em>Motor Sena V1.0</em>',
+    date: 'Janeiro 2025 · 12 min de leitura',
+    content: `
+      <p>O Motor Sena V1.0 é o resultado de meses de trabalho construindo um sistema de inferência de linguagem natural do zero, em Java, especificamente otimizado para o português brasileiro. Este artigo documenta as decisões técnicas, os desafios e o que aprendemos no caminho.</p>
+      <h2>Por que <em>Java</em>?</h2>
+      <p>A escolha de Java para um motor de IA pode parecer incomum em um ecossistema dominado por Python. Mas para nós, fez sentido por três razões: <strong>performance previsível no JVM</strong>, ecosistema robusto para APIs REST de alta concorrência, e familiaridade da equipe com as abstrações de baixo nível necessárias para implementar backpropagation manual.</p>
+      <ul>
+        <li>~25 milhões de parâmetros no modelo padrão</li>
+        <li>Arquitetura Transformer Decoder com atenção multi-head</li>
+        <li>Otimizador AdamW com weight decay configurável</li>
+        <li>Tokenizador customizado para português</li>
+        <li>~3.561 linhas de código em 20 arquivos</li>
+      </ul>
+      <blockquote>O maior desafio não foi implementar o Transformer — foi fazer o backpropagation funcionar corretamente com a nossa estrutura de grafos computacionais customizada.</blockquote>
+      <h2>Infraestrutura de <em>produção</em></h2>
+      <p>O deploy do motor em produção usa Docker com Traefik como reverse proxy para HTTPS automático. HikariCP gerencia o pool de conexões com o banco de dados, e Redis atua como camada de rate limiting — essencial para garantir que planos gratuitos não consumam recursos ilimitados.</p>
+      <div class="article-highlight">
+        <div class="article-highlight-label">Stack de produção</div>
+        <p>Docker + Traefik HTTPS · HikariCP connection pool · Redis rate limiting · JWT auth · BCrypt password hashing · OpenAI-compatible REST endpoints</p>
+      </div>
+      <p>Os endpoints seguem o contrato da API da OpenAI, o que significa que qualquer cliente compatível com OpenAI funciona com o Sena V1.0 sem modificações — apenas mudando a base URL e a chave de API.</p>
+    `
+  },
+  lgpd: {
+    cat: 'LGPD & Dados',
+    title: 'Como implementamos conformidade <em>LGPD nativa</em>',
+    date: 'Dezembro 2024 · 8 min de leitura',
+    content: `
+      <p>A LGPD não pode ser um checkbox de última hora. Quando você constrói um produto de IA que processa dados pessoais de brasileiros, a conformidade precisa ser uma restrição de arquitetura — não uma camada adicionada depois.</p>
+      <h2>Princípio de <em>Privacy by Design</em></h2>
+      <p>Seguimos os sete princípios de Privacy by Design definidos pela ANPD. O mais importante para nós foi o de <strong>minimização de dados</strong>: coletamos apenas o que é estritamente necessário para a função de cada produto.</p>
+      <ul>
+        <li>Dados processados exclusivamente em servidores no Brasil</li>
+        <li>Consentimento granular com finalidade específica</li>
+        <li>Direito de exclusão implementado desde o primeiro deploy</li>
+        <li>Logs de acesso a dados pessoais com auditoria</li>
+        <li>Encarregado de Dados (DPO) designado</li>
+      </ul>
+      <blockquote>Em planos pagos, o conteúdo enviado via API não é utilizado para treinar novos modelos. Isso é uma garantia contratual, não apenas uma política.</blockquote>
+      <h2>Implementação <em>técnica</em></h2>
+      <p>O cookie consent engine que desenvolvemos para o Claudinei implementa granularidade por categoria (essenciais, analytics, publicidade) e respeita a preferência do usuário em todas as sessões subsequentes via localStorage. Para o AdSense e AdMob, implementamos o modo de consentimento da Google com TCF v2.2.</p>
+    `
+  },
+  vs: {
+    cat: 'Mercado',
+    title: 'Claudinei vs. GPT-4 em <em>português brasileiro</em>',
+    date: 'Novembro 2024 · 10 min de leitura',
+    content: `
+      <p>Esta é uma comparação objetiva. Não estamos dizendo que o Claudinei é "melhor" que modelos com bilhões de parâmetros treinados com trilhões de tokens. Estamos mostrando onde um modelo especializado ganha e onde perde — e por que isso importa para o mercado brasileiro.</p>
+      <h2>Onde o <em>Claudinei</em> ganha</h2>
+      <ul>
+        <li><strong>Custo:</strong> até 15x mais barato em BRL para o mesmo volume de tokens</li>
+        <li><strong>Latência:</strong> servidores no Brasil significam 3-5x menos latência para usuários nacionais</li>
+        <li><strong>Gírias e regionalismos:</strong> o Claudinei entende "tá bão", "saudades", "mó trampo" sem estranheza</li>
+        <li><strong>Contexto jurídico:</strong> CLT, LGPD, CNPJ, MEI — o Claudinei conhece as siglas brasileiras</li>
+        <li><strong>Privacidade:</strong> dados que nunca saem do Brasil</li>
+      </ul>
+      <h2>Onde modelos maiores <em>ainda ganham</em></h2>
+      <p>Honestidade é fundamental. Para tarefas de raciocínio complexo, matemática avançada ou código em linguagens raras, modelos com muito mais parâmetros ainda têm vantagem. O Claudinei foi construído para o caso de uso do dia a dia brasileiro — não para substituir todos os modelos em todas as tarefas.</p>
+      <blockquote>O modelo certo não é o maior. É o que foi construído para o seu contexto.</blockquote>
+    `
+  },
+  infra: {
+    cat: 'Infraestrutura',
+    title: 'Stack de produção: <em>Railway, Supabase, Cloudflare, BetterStack</em>',
+    date: 'Outubro 2024 · 9 min de leitura',
+    content: `
+      <p>Manter um produto de IA em produção com 99,9% de uptime é um desafio de engenharia. Este artigo documenta as ferramentas que escolhemos, por que as escolhemos e como as integramos.</p>
+      <h2><em>Railway</em> para hosting</h2>
+      <p>Railway oferece deploy automático via GitHub, variáveis de ambiente seguras, e escalonamento simples. Para o Claudinei, é onde o backend Java e os frontends de cada produto vivem. O custo previsível e a ausência de surpresas de billing tornaram ele nossa escolha principal.</p>
+      <h2><em>Supabase</em> para dados</h2>
+      <p>Supabase gerencia autenticação, banco de dados PostgreSQL e armazenamento. Usamos Row Level Security (RLS) para garantir que cada usuário acesse apenas seus próprios dados — uma camada de segurança importante quando você processa conversas de IA.</p>
+      <ul>
+        <li>Auth com social login e magic link</li>
+        <li>Memória persistente de conversas por usuário</li>
+        <li>Edge Functions para lógica de negócio sensível</li>
+        <li>Realtime para atualizações ao vivo</li>
+      </ul>
+      <h2><em>Cloudflare</em> para CDN e segurança</h2>
+      <p>Todo tráfego passa pelo Cloudflare antes de chegar aos servidores. Isso nos dá proteção DDoS, cache de assets estáticos, e o Workers KV para cache de respostas frequentes — reduzindo carga e custo de inferência.</p>
+      <h2><em>BetterStack</em> para observabilidade</h2>
+      <p>Logs estruturados, métricas de latência por modelo, alertas de anomalia e a página de status pública — tudo pelo BetterStack. Quando algo quebra às 3 da manhã, queremos saber antes dos usuários.</p>
+    `
+  },
+  familia: {
+    cat: 'Produto',
+    title: 'Família Claudinei: <em>cinco produtos</em>, um motor',
+    date: 'Setembro 2024 · 7 min de leitura',
+    content: `
+      <p>O Motor Sena V1.0 não é apenas o backend do Claudinei — é a fundação de um ecossistema inteiro de produtos. Esta é a história de como decidimos construir uma família de produtos em vez de um produto singular.</p>
+      <h2>Por que uma <em>família</em>?</h2>
+      <p>Cada produto serve um público diferente com necessidades diferentes. Um chatbot de atendimento ao cliente precisa de respostas rápidas e curtas. Uma rede social literária precisa de análise de texto longa. Um app Android precisa funcionar offline. Um único produto genérico nunca atende todos esses casos.</p>
+      <ul>
+        <li><strong>Claudinei AI:</strong> assistente principal, via web e API</li>
+        <li><strong>Sion AI:</strong> assistente PWA com Mistral, foco em velocidade</li>
+        <li><strong>Tinta:</strong> rede social literária para escritores brasileiros</li>
+        <li><strong>Aion AI:</strong> interface estilo ChatGPT com histórico local</li>
+        <li><strong>App Android:</strong> Claudinei no Google Play com AdMob</li>
+      </ul>
+      <blockquote>Um motor, muitos veículos. A abstração certa permite que cada produto evolua independentemente sem recriar a fundação.</blockquote>
+    `
+  },
+  tokens: {
+    cat: 'Engenharia',
+    title: 'Por que o português tem <em>30% mais tokens</em> que o inglês',
+    date: 'Agosto 2024 · 6 min de leitura',
+    content: `
+      <p>Quando você usa um modelo treinado para inglês em português, você paga mais — e ele entende menos. A razão é a tokenização: modelos de inglês fragmentam palavras portuguesas de forma ineficiente.</p>
+      <h2>O problema da <em>tokenização multilíngue</em></h2>
+      <p>Considere a palavra "computador". Um tokenizador treinado predominantemente em inglês pode fragmentá-la em ["comput", "ador"] ou até ["com", "put", "ador"] — três tokens para uma palavra. Um tokenizador treinado em português a reconhece como um único token.</p>
+      <p>Na prática, isso significa que um texto em português brasileiro gasta entre 20% e 35% mais tokens do que o equivalente em inglês no mesmo modelo. Para um produto que cobra por token, isso é diretamente um imposto sobre o usuário brasileiro.</p>
+      <h2>Nossa solução no <em>Sena V1.0</em></h2>
+      <ul>
+        <li>Vocabulário de 50.000 tokens treinado em corpus brasileiro</li>
+        <li>Palavras comuns em PT-BR como tokens únicos</li>
+        <li>Acentuação e caracteres especiais tratados nativamente</li>
+        <li>Gírias e neologismos incluídos no vocabulário base</li>
+      </ul>
+      <p>O resultado: textos em português no Sena V1.0 usam em média 22% menos tokens do que no mesmo texto processado por tokenizadores genéricos — o que se traduz diretamente em custo menor e qualidade de compreensão superior.</p>
+    `
+  },
+  admob: {
+    cat: 'Produto',
+    title: 'Monetização de <em>apps de IA no Brasil</em>: AdMob, AdSense e LGPD',
+    date: 'Julho 2024 · 8 min de leitura',
+    content: `
+      <p>Monetizar um produto de IA gratuito no Brasil tem desafios únicos: o custo de inferência é real, mas o poder aquisitivo do usuário médio impede assinaturas caras. A publicidade contextual é a ponte — mas precisa ser feita com respeito à LGPD e à experiência do usuário.</p>
+      <h2>Fluxo de consentimento <em>LGPD-compliant</em></h2>
+      <p>Implementamos um modal de consentimento que aparece na primeira visita e oferece três opções claras: aceitar tudo, personalizar por categoria, ou recusar publicidade personalizada. A escolha é armazenada e respeitada em todas as sessões subsequentes.</p>
+      <ul>
+        <li>TCF v2.2 para conformidade com o ecossistema do Google</li>
+        <li>Modo de consentimento ativado: sem cookies de advertising antes do aceite</li>
+        <li>Botão de revisão de preferências sempre acessível no footer</li>
+        <li>Consentimento registrado com timestamp para auditoria</li>
+      </ul>
+      <h2>AdMob no <em>app Android</em></h2>
+      <p>No app Android do Claudinei, usamos anúncios intersticiais entre sessões de conversa e banners na tela principal. O timing é calibrado para não interromper conversas ativas — o usuário vê publicidade entre interações, não durante elas.</p>
+      <blockquote>A publicidade pode ser respeitosa. O segredo é escolher o momento certo, não o momento mais lucrativo.</blockquote>
+      <h2>Resultados e <em>aprendizados</em></h2>
+      <p>A taxa de aceitação de cookies foi de 68% nos primeiros 30 dias — acima da média do setor para modais LGPD bem implementados. A chave foi linguagem clara, opções genuínas e ausência de dark patterns.</p>
+    `
+  }
+};
+
+function openArticle(id) {
+  const a = articles[id];
+  if (!a) return;
+  const body = document.getElementById('article-body');
+  body.innerHTML = `
+    <div class="article-cat">${a.cat}</div>
+    <h1 class="article-h1">${a.title}</h1>
+    <div class="article-date">${a.date} · Telos Lab</div>
+    <div class="article-content">${a.content}</div>
+  `;
+  const overlay = document.getElementById('article-overlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  overlay.scrollTop = 0;
+}
+
+function closeArticle() {
+  document.getElementById('article-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+
+// Newsletter
+function subscribeNewsletter(btn) {
+  const input = btn.previousElementSibling;
+  if (!input.value || !input.value.includes('@')) {
+    input.style.borderColor = 'rgba(220,80,80,0.5)';
+    setTimeout(() => input.style.borderColor = '', 1500);
+    return;
+  }
+  btn.textContent = 'Inscrito! ✓';
+  btn.style.background = '#7dc87d';
+  input.value = '';
+  setTimeout(() => { btn.textContent = 'Inscrever-se'; btn.style.background = ''; }, 3000);
+}
+
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
+    Telos Technologies
+  </div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="precos.html">Preços</a></li>
+  </ul>
+  <div class="footer-right">
+    <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a><br>
+    © 2025 Tellos Tecnologia LTDA.
+  </div>
+</footer>
+
+<!-- ARTICLE OVERLAY -->
+<div class="article-overlay" id="article-overlay">
+  <div class="article-nav">
+    <button class="back-btn" onclick="closeArticle()">← Voltar ao blog</button>
+    <span style="font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted2); letter-spacing:0.1em; text-transform:uppercase;">Telos Lab</span>
+  </div>
+  <div class="article-body" id="article-body"></div>
+</div>
+
+<script>
+const articles = {
+  sena: {
+    cat: 'Engenharia de modelos',
+    title: 'Apresentando o <em>Motor Sena V1.0</em>',
+    date: 'Janeiro 2025 · 12 min de leitura',
+    content: `
+      <p>O Motor Sena V1.0 é o resultado de meses de trabalho construindo um sistema de inferência de linguagem natural do zero, em Java, especificamente otimizado para o português brasileiro. Este artigo documenta as decisões técnicas, os desafios e o que aprendemos no caminho.</p>
+      <h2>Por que <em>Java</em>?</h2>
+      <p>A escolha de Java para um motor de IA pode parecer incomum em um ecossistema dominado por Python. Mas para nós, fez sentido por três razões: <strong>performance previsível no JVM</strong>, ecosistema robusto para APIs REST de alta concorrência, e familiaridade da equipe com as abstrações de baixo nível necessárias para implementar backpropagation manual.</p>
+      <ul>
+        <li>~25 milhões de parâmetros no modelo padrão</li>
+        <li>Arquitetura Transformer Decoder com atenção multi-head</li>
+        <li>Otimizador AdamW com weight decay configurável</li>
+        <li>Tokenizador customizado para português</li>
+        <li>~3.561 linhas de código em 20 arquivos</li>
+      </ul>
+      <blockquote>O maior desafio não foi implementar o Transformer — foi fazer o backpropagation funcionar corretamente com a nossa estrutura de grafos computacionais customizada.</blockquote>
+      <h2>Infraestrutura de <em>produção</em></h2>
+      <p>O deploy do motor em produção usa Docker com Traefik como reverse proxy para HTTPS automático. HikariCP gerencia o pool de conexões com o banco de dados, e Redis atua como camada de rate limiting — essencial para garantir que planos gratuitos não consumam recursos ilimitados.</p>
+      <div class="article-highlight">
+        <div class="article-highlight-label">Stack de produção</div>
+        <p>Docker + Traefik HTTPS · HikariCP connection pool · Redis rate limiting · JWT auth · BCrypt password hashing · OpenAI-compatible REST endpoints</p>
+      </div>
+      <p>Os endpoints seguem o contrato da API da OpenAI, o que significa que qualquer cliente compatível com OpenAI funciona com o Sena V1.0 sem modificações — apenas mudando a base URL e a chave de API.</p>
+    `
+  },
+  lgpd: {
+    cat: 'LGPD & Dados',
+    title: 'Como implementamos conformidade <em>LGPD nativa</em>',
+    date: 'Dezembro 2024 · 8 min de leitura',
+    content: `
+      <p>A LGPD não pode ser um checkbox de última hora. Quando você constrói um produto de IA que processa dados pessoais de brasileiros, a conformidade precisa ser uma restrição de arquitetura — não uma camada adicionada depois.</p>
+      <h2>Princípio de <em>Privacy by Design</em></h2>
+      <p>Seguimos os sete princípios de Privacy by Design definidos pela ANPD. O mais importante para nós foi o de <strong>minimização de dados</strong>: coletamos apenas o que é estritamente necessário para a função de cada produto.</p>
+      <ul>
+        <li>Dados processados exclusivamente em servidores no Brasil</li>
+        <li>Consentimento granular com finalidade específica</li>
+        <li>Direito de exclusão implementado desde o primeiro deploy</li>
+        <li>Logs de acesso a dados pessoais com auditoria</li>
+        <li>Encarregado de Dados (DPO) designado</li>
+      </ul>
+      <blockquote>Em planos pagos, o conteúdo enviado via API não é utilizado para treinar novos modelos. Isso é uma garantia contratual, não apenas uma política.</blockquote>
+      <h2>Implementação <em>técnica</em></h2>
+      <p>O cookie consent engine que desenvolvemos para o Claudinei implementa granularidade por categoria (essenciais, analytics, publicidade) e respeita a preferência do usuário em todas as sessões subsequentes via localStorage. Para o AdSense e AdMob, implementamos o modo de consentimento da Google com TCF v2.2.</p>
+    `
+  },
+  vs: {
+    cat: 'Mercado',
+    title: 'Claudinei vs. GPT-4 em <em>português brasileiro</em>',
+    date: 'Novembro 2024 · 10 min de leitura',
+    content: `
+      <p>Esta é uma comparação objetiva. Não estamos dizendo que o Claudinei é "melhor" que modelos com bilhões de parâmetros treinados com trilhões de tokens. Estamos mostrando onde um modelo especializado ganha e onde perde — e por que isso importa para o mercado brasileiro.</p>
+      <h2>Onde o <em>Claudinei</em> ganha</h2>
+      <ul>
+        <li><strong>Custo:</strong> até 15x mais barato em BRL para o mesmo volume de tokens</li>
+        <li><strong>Latência:</strong> servidores no Brasil significam 3-5x menos latência para usuários nacionais</li>
+        <li><strong>Gírias e regionalismos:</strong> o Claudinei entende "tá bão", "saudades", "mó trampo" sem estranheza</li>
+        <li><strong>Contexto jurídico:</strong> CLT, LGPD, CNPJ, MEI — o Claudinei conhece as siglas brasileiras</li>
+        <li><strong>Privacidade:</strong> dados que nunca saem do Brasil</li>
+      </ul>
+      <h2>Onde modelos maiores <em>ainda ganham</em></h2>
+      <p>Honestidade é fundamental. Para tarefas de raciocínio complexo, matemática avançada ou código em linguagens raras, modelos com muito mais parâmetros ainda têm vantagem. O Claudinei foi construído para o caso de uso do dia a dia brasileiro — não para substituir todos os modelos em todas as tarefas.</p>
+      <blockquote>O modelo certo não é o maior. É o que foi construído para o seu contexto.</blockquote>
+    `
+  },
+  infra: {
+    cat: 'Infraestrutura',
+    title: 'Stack de produção: <em>Railway, Supabase, Cloudflare, BetterStack</em>',
+    date: 'Outubro 2024 · 9 min de leitura',
+    content: `
+      <p>Manter um produto de IA em produção com 99,9% de uptime é um desafio de engenharia. Este artigo documenta as ferramentas que escolhemos, por que as escolhemos e como as integramos.</p>
+      <h2><em>Railway</em> para hosting</h2>
+      <p>Railway oferece deploy automático via GitHub, variáveis de ambiente seguras, e escalonamento simples. Para o Claudinei, é onde o backend Java e os frontends de cada produto vivem. O custo previsível e a ausência de surpresas de billing tornaram ele nossa escolha principal.</p>
+      <h2><em>Supabase</em> para dados</h2>
+      <p>Supabase gerencia autenticação, banco de dados PostgreSQL e armazenamento. Usamos Row Level Security (RLS) para garantir que cada usuário acesse apenas seus próprios dados — uma camada de segurança importante quando você processa conversas de IA.</p>
+      <ul>
+        <li>Auth com social login e magic link</li>
+        <li>Memória persistente de conversas por usuário</li>
+        <li>Edge Functions para lógica de negócio sensível</li>
+        <li>Realtime para atualizações ao vivo</li>
+      </ul>
+      <h2><em>Cloudflare</em> para CDN e segurança</h2>
+      <p>Todo tráfego passa pelo Cloudflare antes de chegar aos servidores. Isso nos dá proteção DDoS, cache de assets estáticos, e o Workers KV para cache de respostas frequentes — reduzindo carga e custo de inferência.</p>
+      <h2><em>BetterStack</em> para observabilidade</h2>
+      <p>Logs estruturados, métricas de latência por modelo, alertas de anomalia e a página de status pública — tudo pelo BetterStack. Quando algo quebra às 3 da manhã, queremos saber antes dos usuários.</p>
+    `
+  },
+  familia: {
+    cat: 'Produto',
+    title: 'Família Claudinei: <em>cinco produtos</em>, um motor',
+    date: 'Setembro 2024 · 7 min de leitura',
+    content: `
+      <p>O Motor Sena V1.0 não é apenas o backend do Claudinei — é a fundação de um ecossistema inteiro de produtos. Esta é a história de como decidimos construir uma família de produtos em vez de um produto singular.</p>
+      <h2>Por que uma <em>família</em>?</h2>
+      <p>Cada produto serve um público diferente com necessidades diferentes. Um chatbot de atendimento ao cliente precisa de respostas rápidas e curtas. Uma rede social literária precisa de análise de texto longa. Um app Android precisa funcionar offline. Um único produto genérico nunca atende todos esses casos.</p>
+      <ul>
+        <li><strong>Claudinei AI:</strong> assistente principal, via web e API</li>
+        <li><strong>Sion AI:</strong> assistente PWA com Mistral, foco em velocidade</li>
+        <li><strong>Tinta:</strong> rede social literária para escritores brasileiros</li>
+        <li><strong>Aion AI:</strong> interface estilo ChatGPT com histórico local</li>
+        <li><strong>App Android:</strong> Claudinei no Google Play com AdMob</li>
+      </ul>
+      <blockquote>Um motor, muitos veículos. A abstração certa permite que cada produto evolua independentemente sem recriar a fundação.</blockquote>
+    `
+  },
+  tokens: {
+    cat: 'Engenharia',
+    title: 'Por que o português tem <em>30% mais tokens</em> que o inglês',
+    date: 'Agosto 2024 · 6 min de leitura',
+    content: `
+      <p>Quando você usa um modelo treinado para inglês em português, você paga mais — e ele entende menos. A razão é a tokenização: modelos de inglês fragmentam palavras portuguesas de forma ineficiente.</p>
+      <h2>O problema da <em>tokenização multilíngue</em></h2>
+      <p>Considere a palavra "computador". Um tokenizador treinado predominantemente em inglês pode fragmentá-la em ["comput", "ador"] ou até ["com", "put", "ador"] — três tokens para uma palavra. Um tokenizador treinado em português a reconhece como um único token.</p>
+      <p>Na prática, isso significa que um texto em português brasileiro gasta entre 20% e 35% mais tokens do que o equivalente em inglês no mesmo modelo. Para um produto que cobra por token, isso é diretamente um imposto sobre o usuário brasileiro.</p>
+      <h2>Nossa solução no <em>Sena V1.0</em></h2>
+      <ul>
+        <li>Vocabulário de 50.000 tokens treinado em corpus brasileiro</li>
+        <li>Palavras comuns em PT-BR como tokens únicos</li>
+        <li>Acentuação e caracteres especiais tratados nativamente</li>
+        <li>Gírias e neologismos incluídos no vocabulário base</li>
+      </ul>
+      <p>O resultado: textos em português no Sena V1.0 usam em média 22% menos tokens do que no mesmo texto processado por tokenizadores genéricos — o que se traduz diretamente em custo menor e qualidade de compreensão superior.</p>
+    `
+  },
+  admob: {
+    cat: 'Produto',
+    title: 'Monetização de <em>apps de IA no Brasil</em>: AdMob, AdSense e LGPD',
+    date: 'Julho 2024 · 8 min de leitura',
+    content: `
+      <p>Monetizar um produto de IA gratuito no Brasil tem desafios únicos: o custo de inferência é real, mas o poder aquisitivo do usuário médio impede assinaturas caras. A publicidade contextual é a ponte — mas precisa ser feita com respeito à LGPD e à experiência do usuário.</p>
+      <h2>Fluxo de consentimento <em>LGPD-compliant</em></h2>
+      <p>Implementamos um modal de consentimento que aparece na primeira visita e oferece três opções claras: aceitar tudo, personalizar por categoria, ou recusar publicidade personalizada. A escolha é armazenada e respeitada em todas as sessões subsequentes.</p>
+      <ul>
+        <li>TCF v2.2 para conformidade com o ecossistema do Google</li>
+        <li>Modo de consentimento ativado: sem cookies de advertising antes do aceite</li>
+        <li>Botão de revisão de preferências sempre acessível no footer</li>
+        <li>Consentimento registrado com timestamp para auditoria</li>
+      </ul>
+      <h2>AdMob no <em>app Android</em></h2>
+      <p>No app Android do Claudinei, usamos anúncios intersticiais entre sessões de conversa e banners na tela principal. O timing é calibrado para não interromper conversas ativas — o usuário vê publicidade entre interações, não durante elas.</p>
+      <blockquote>A publicidade pode ser respeitosa. O segredo é escolher o momento certo, não o momento mais lucrativo.</blockquote>
+      <h2>Resultados e <em>aprendizados</em></h2>
+      <p>A taxa de aceitação de cookies foi de 68% nos primeiros 30 dias — acima da média do setor para modais LGPD bem implementados. A chave foi linguagem clara, opções genuínas e ausência de dark patterns.</p>
+    `
+  }
+};
+
+function openArticle(id) {
+  const a = articles[id];
+  if (!a) return;
+  const body = document.getElementById('article-body');
+  body.innerHTML = `
+    <div class="article-cat">${a.cat}</div>
+    <h1 class="article-h1">${a.title}</h1>
+    <div class="article-date">${a.date} · Telos Lab</div>
+    <div class="article-content">${a.content}</div>
+  `;
+  const overlay = document.getElementById('article-overlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  overlay.scrollTop = 0;
+}
+
+function closeArticle() {
+  document.getElementById('article-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+
+// Newsletter
+function subscribeNewsletter(btn) {
+  const input = btn.previousElementSibling;
+  if (!input.value || !input.value.includes('@')) {
+    input.style.borderColor = 'rgba(220,80,80,0.5)';
+    setTimeout(() => input.style.borderColor = '', 1500);
+    return;
+  }
+  btn.textContent = 'Inscrito! ✓';
+  btn.style.background = '#7dc87d';
+  input.value = '';
+  setTimeout(() => { btn.textContent = 'Inscrever-se'; btn.style.background = ''; }, 3000);
+}
+
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
+    Telos
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Produto</a></li>
+    <li><a href="about.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="precos.html">Preços</a></li>
+  </ul>
+  <a href="precos.html" class="nav-cta">Começar grátis</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-eyebrow">Blog &amp; Novidades</div>
+  <h1 class="page-h1">Telos <em>Lab</em></h1>
+  <p class="page-sub">Artigos sobre IA, engenharia de modelos, o mercado brasileiro de tecnologia e a construção do Motor Sena.</p>
+</div>
+
+<!-- LAYOUT -->
+<div class="blog-layout">
+  <div class="blog-main">
+
+    <!-- FEATURED -->
+    <div class="posts-section-label">Em destaque</div>
+    <div class="featured-post reveal" onclick="openArticle('sena')">
+      <div class="featured-visual">
+        <div class="featured-visual-inner">
+          <div class="feat-metric"><div class="feat-metric-val">128<span>K</span></div><div class="feat-metric-label">Contexto Pro</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">25<span>M</span></div><div class="feat-metric-label">Parâmetros</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">180<span>ms</span></div><div class="feat-metric-label">Latência Flash</div></div>
+          <div class="feat-metric"><div class="feat-metric-val">3<span>×</span></div><div class="feat-metric-label">Variantes</div></div>
+        </div>
+      </div>
+      <div class="featured-content">
+        <div class="post-category">Engenharia de modelos</div>
+        <div class="featured-title">Apresentando o <em>Motor Sena V1.0</em>: como construímos um Transformer Decoder em Java para o português</div>
+        <p class="post-excerpt">Do zero ao deploy em produção: a história técnica por trás do motor de inferência que alimenta o Claudinei — backpropagation, AdamW, Redis rate limiting e Traefik HTTPS.</p>
+        <div class="post-meta">
+          <span class="post-date">Janeiro 2025</span>
+          <span class="read-more">Ler artigo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSTS -->
+    <div class="posts-section-label">Publicações recentes</div>
+    <div class="posts-grid reveal">
+      <div class="post-card" onclick="openArticle('lgpd')">
+        <div class="post-card-category">LGPD &amp; Dados</div>
+        <div class="post-card-title">Como implementamos <em>conformidade LGPD</em> nativa desde o primeiro commit</div>
+        <p class="post-card-excerpt">A LGPD não pode ser adicionada depois. Mostramos como estruturamos arquitetura, contratos de dados e políticas de retenção desde o dia zero.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Dezembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('vs')">
+        <div class="post-card-category">Mercado</div>
+        <div class="post-card-title">Claudinei vs. GPT-4 em <em>português brasileiro</em>: onde cada um brilha</div>
+        <p class="post-card-excerpt">Comparação objetiva de benchmarks, latência e custo entre modelos genéricos e um modelo treinado especificamente para o português.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Novembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('infra')">
+        <div class="post-card-category">Infraestrutura</div>
+        <div class="post-card-title">Stack completo de produção: <em>Railway, Supabase, Cloudflare e BetterStack</em></div>
+        <p class="post-card-excerpt">Como escolhemos e integramos as ferramentas que mantêm o Claudinei disponível 24/7 com 99,9% de uptime e custo previsível.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Outubro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('familia')">
+        <div class="post-card-category">Produto</div>
+        <div class="post-card-title">Família Claudinei: <em>cinco produtos</em>, um motor</div>
+        <p class="post-card-excerpt">Sion AI, Tinta, Aion AI, app Android, chatbot web — como um único motor de inferência alimenta um ecossistema inteiro de produtos diferentes.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Setembro 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('tokens')">
+        <div class="post-card-category">Engenharia</div>
+        <div class="post-card-title">Por que o português tem <em>30% mais tokens</em> que o inglês — e o que fizemos a respeito</div>
+        <p class="post-card-excerpt">Análise de tokenização em diferentes idiomas e como otimizamos o vocabulário do Sena V1.0 para reduzir custo e melhorar compreensão.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Agosto 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="post-card" onclick="openArticle('admob')">
+        <div class="post-card-category">Produto</div>
+        <div class="post-card-title">Monetização de <em>apps de IA no Brasil</em>: AdMob, AdSense e LGPD</div>
+        <p class="post-card-excerpt">Como implementamos consentimento LGPD-compliant com monetização via Google AdMob no app Android e AdSense no web — sem sacrificar experiência do usuário.</p>
+        <div class="post-card-meta">
+          <span class="post-card-date">Julho 2024</span>
+          <span class="post-card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="blog-sidebar">
+    <div class="sidebar-widget">
+      <div class="widget-title">Categorias</div>
+      <ul class="cat-list">
+        <li><a href="#">Engenharia de modelos <span class="cat-count">3</span></a></li>
+        <li><a href="#">Produto <span class="cat-count">4</span></a></li>
+        <li><a href="#">Infraestrutura <span class="cat-count">2</span></a></li>
+        <li><a href="#">LGPD &amp; Dados <span class="cat-count">2</span></a></li>
+        <li><a href="#">Mercado <span class="cat-count">1</span></a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Newsletter</div>
+      <p class="newsletter-desc">Receba artigos sobre IA brasileira, atualizações do Motor Sena e novidades da Telos.</p>
+      <input type="email" class="newsletter-input" placeholder="seu@email.com.br">
+      <button class="newsletter-btn" onclick="subscribeNewsletter(this)">Inscrever-se</button>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Tags</div>
+      <div class="tags-wrap">
+        <span class="tag">Motor Sena</span>
+        <span class="tag">Transformer</span>
+        <span class="tag">LGPD</span>
+        <span class="tag">API</span>
+        <span class="tag">Brasil</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Railway</span>
+        <span class="tag">AdMob</span>
+        <span class="tag">Java AI</span>
+        <span class="tag">Tokenização</span>
+        <span class="tag">Claudinei</span>
+        <span class="tag">PWA</span>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">Contato</div>
+      <p class="newsletter-desc">Para parcerias, imprensa ou colaborações editoriais.</p>
+      <a href="mailto:ampla.ai@outlook.com" style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gold); text-decoration:none; letter-spacing:0.08em;">ampla.ai@outlook.com</a>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <a href="https://i.imgur.com/uTkYfm6.jpeg"
+    <div class="footer-logo-mark">T</div>
+    Telos Technologies
+  </div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="precos.html">Preços</a></li>
+  </ul>
+  <div class="footer-right">
+    <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a><br>
+    © 2025 Tellos Tecnologia LTDA.
+  </div>
+</footer>
+
+<!-- ARTICLE OVERLAY -->
+<div class="article-overlay" id="article-overlay">
+  <div class="article-nav">
+    <button class="back-btn" onclick="closeArticle()">← Voltar ao blog</button>
+    <span style="font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--muted2); letter-spacing:0.1em; text-transform:uppercase;">Telos Lab</span>
+  </div>
+  <div class="article-body" id="article-body"></div>
+</div>
+
+<script>
+const articles = {
+  sena: {
+    cat: 'Engenharia de modelos',
+    title: 'Apresentando o <em>Motor Sena V1.0</em>',
+    date: 'Janeiro 2025 · 12 min de leitura',
+    content: `
+      <p>O Motor Sena V1.0 é o resultado de meses de trabalho construindo um sistema de inferência de linguagem natural do zero, em Java, especificamente otimizado para o português brasileiro. Este artigo documenta as decisões técnicas, os desafios e o que aprendemos no caminho.</p>
+      <h2>Por que <em>Java</em>?</h2>
+      <p>A escolha de Java para um motor de IA pode parecer incomum em um ecossistema dominado por Python. Mas para nós, fez sentido por três razões: <strong>performance previsível no JVM</strong>, ecosistema robusto para APIs REST de alta concorrência, e familiaridade da equipe com as abstrações de baixo nível necessárias para implementar backpropagation manual.</p>
+      <ul>
+        <li>~25 milhões de parâmetros no modelo padrão</li>
+        <li>Arquitetura Transformer Decoder com atenção multi-head</li>
+        <li>Otimizador AdamW com weight decay configurável</li>
+        <li>Tokenizador customizado para português</li>
+        <li>~3.561 linhas de código em 20 arquivos</li>
+      </ul>
+      <blockquote>O maior desafio não foi implementar o Transformer — foi fazer o backpropagation funcionar corretamente com a nossa estrutura de grafos computacionais customizada.</blockquote>
+      <h2>Infraestrutura de <em>produção</em></h2>
+      <p>O deploy do motor em produção usa Docker com Traefik como reverse proxy para HTTPS automático. HikariCP gerencia o pool de conexões com o banco de dados, e Redis atua como camada de rate limiting — essencial para garantir que planos gratuitos não consumam recursos ilimitados.</p>
+      <div class="article-highlight">
+        <div class="article-highlight-label">Stack de produção</div>
+        <p>Docker + Traefik HTTPS · HikariCP connection pool · Redis rate limiting · JWT auth · BCrypt password hashing · OpenAI-compatible REST endpoints</p>
+      </div>
+      <p>Os endpoints seguem o contrato da API da OpenAI, o que significa que qualquer cliente compatível com OpenAI funciona com o Sena V1.0 sem modificações — apenas mudando a base URL e a chave de API.</p>
+    `
+  },
+  lgpd: {
+    cat: 'LGPD & Dados',
+    title: 'Como implementamos conformidade <em>LGPD nativa</em>',
+    date: 'Dezembro 2024 · 8 min de leitura',
+    content: `
+      <p>A LGPD não pode ser um checkbox de última hora. Quando você constrói um produto de IA que processa dados pessoais de brasileiros, a conformidade precisa ser uma restrição de arquitetura — não uma camada adicionada depois.</p>
+      <h2>Princípio de <em>Privacy by Design</em></h2>
+      <p>Seguimos os sete princípios de Privacy by Design definidos pela ANPD. O mais importante para nós foi o de <strong>minimização de dados</strong>: coletamos apenas o que é estritamente necessário para a função de cada produto.</p>
+      <ul>
+        <li>Dados processados exclusivamente em servidores no Brasil</li>
+        <li>Consentimento granular com finalidade específica</li>
+        <li>Direito de exclusão implementado desde o primeiro deploy</li>
+        <li>Logs de acesso a dados pessoais com auditoria</li>
+        <li>Encarregado de Dados (DPO) designado</li>
+      </ul>
+      <blockquote>Em planos pagos, o conteúdo enviado via API não é utilizado para treinar novos modelos. Isso é uma garantia contratual, não apenas uma política.</blockquote>
+      <h2>Implementação <em>técnica</em></h2>
+      <p>O cookie consent engine que desenvolvemos para o Claudinei implementa granularidade por categoria (essenciais, analytics, publicidade) e respeita a preferência do usuário em todas as sessões subsequentes via localStorage. Para o AdSense e AdMob, implementamos o modo de consentimento da Google com TCF v2.2.</p>
+    `
+  },
+  vs: {
+    cat: 'Mercado',
+    title: 'Claudinei vs. GPT-4 em <em>português brasileiro</em>',
+    date: 'Novembro 2024 · 10 min de leitura',
+    content: `
+      <p>Esta é uma comparação objetiva. Não estamos dizendo que o Claudinei é "melhor" que modelos com bilhões de parâmetros treinados com trilhões de tokens. Estamos mostrando onde um modelo especializado ganha e onde perde — e por que isso importa para o mercado brasileiro.</p>
+      <h2>Onde o <em>Claudinei</em> ganha</h2>
+      <ul>
+        <li><strong>Custo:</strong> até 15x mais barato em BRL para o mesmo volume de tokens</li>
+        <li><strong>Latência:</strong> servidores no Brasil significam 3-5x menos latência para usuários nacionais</li>
+        <li><strong>Gírias e regionalismos:</strong> o Claudinei entende "tá bão", "saudades", "mó trampo" sem estranheza</li>
+        <li><strong>Contexto jurídico:</strong> CLT, LGPD, CNPJ, MEI — o Claudinei conhece as siglas brasileiras</li>
+        <li><strong>Privacidade:</strong> dados que nunca saem do Brasil</li>
+      </ul>
+      <h2>Onde modelos maiores <em>ainda ganham</em></h2>
+      <p>Honestidade é fundamental. Para tarefas de raciocínio complexo, matemática avançada ou código em linguagens raras, modelos com muito mais parâmetros ainda têm vantagem. O Claudinei foi construído para o caso de uso do dia a dia brasileiro — não para substituir todos os modelos em todas as tarefas.</p>
+      <blockquote>O modelo certo não é o maior. É o que foi construído para o seu contexto.</blockquote>
+    `
+  },
+  infra: {
+    cat: 'Infraestrutura',
+    title: 'Stack de produção: <em>Railway, Supabase, Cloudflare, BetterStack</em>',
+    date: 'Outubro 2024 · 9 min de leitura',
+    content: `
+      <p>Manter um produto de IA em produção com 99,9% de uptime é um desafio de engenharia. Este artigo documenta as ferramentas que escolhemos, por que as escolhemos e como as integramos.</p>
+      <h2><em>Railway</em> para hosting</h2>
+      <p>Railway oferece deploy automático via GitHub, variáveis de ambiente seguras, e escalonamento simples. Para o Claudinei, é onde o backend Java e os frontends de cada produto vivem. O custo previsível e a ausência de surpresas de billing tornaram ele nossa escolha principal.</p>
+      <h2><em>Supabase</em> para dados</h2>
+      <p>Supabase gerencia autenticação, banco de dados PostgreSQL e armazenamento. Usamos Row Level Security (RLS) para garantir que cada usuário acesse apenas seus próprios dados — uma camada de segurança importante quando você processa conversas de IA.</p>
+      <ul>
+        <li>Auth com social login e magic link</li>
+        <li>Memória persistente de conversas por usuário</li>
+        <li>Edge Functions para lógica de negócio sensível</li>
+        <li>Realtime para atualizações ao vivo</li>
+      </ul>
+      <h2><em>Cloudflare</em> para CDN e segurança</h2>
+      <p>Todo tráfego passa pelo Cloudflare antes de chegar aos servidores. Isso nos dá proteção DDoS, cache de assets estáticos, e o Workers KV para cache de respostas frequentes — reduzindo carga e custo de inferência.</p>
+      <h2><em>BetterStack</em> para observabilidade</h2>
+      <p>Logs estruturados, métricas de latência por modelo, alertas de anomalia e a página de status pública — tudo pelo BetterStack. Quando algo quebra às 3 da manhã, queremos saber antes dos usuários.</p>
+    `
+  },
+  familia: {
+    cat: 'Produto',
+    title: 'Família Claudinei: <em>cinco produtos</em>, um motor',
+    date: 'Setembro 2024 · 7 min de leitura',
+    content: `
+      <p>O Motor Sena V1.0 não é apenas o backend do Claudinei — é a fundação de um ecossistema inteiro de produtos. Esta é a história de como decidimos construir uma família de produtos em vez de um produto singular.</p>
+      <h2>Por que uma <em>família</em>?</h2>
+      <p>Cada produto serve um público diferente com necessidades diferentes. Um chatbot de atendimento ao cliente precisa de respostas rápidas e curtas. Uma rede social literária precisa de análise de texto longa. Um app Android precisa funcionar offline. Um único produto genérico nunca atende todos esses casos.</p>
+      <ul>
+        <li><strong>Claudinei AI:</strong> assistente principal, via web e API</li>
+        <li><strong>Sion AI:</strong> assistente PWA com Mistral, foco em velocidade</li>
+        <li><strong>Tinta:</strong> rede social literária para escritores brasileiros</li>
+        <li><strong>Aion AI:</strong> interface estilo ChatGPT com histórico local</li>
+        <li><strong>App Android:</strong> Claudinei no Google Play com AdMob</li>
+      </ul>
+      <blockquote>Um motor, muitos veículos. A abstração certa permite que cada produto evolua independentemente sem recriar a fundação.</blockquote>
+    `
+  },
+  tokens: {
+    cat: 'Engenharia',
+    title: 'Por que o português tem <em>30% mais tokens</em> que o inglês',
+    date: 'Agosto 2024 · 6 min de leitura',
+    content: `
+      <p>Quando você usa um modelo treinado para inglês em português, você paga mais — e ele entende menos. A razão é a tokenização: modelos de inglês fragmentam palavras portuguesas de forma ineficiente.</p>
+      <h2>O problema da <em>tokenização multilíngue</em></h2>
+      <p>Considere a palavra "computador". Um tokenizador treinado predominantemente em inglês pode fragmentá-la em ["comput", "ador"] ou até ["com", "put", "ador"] — três tokens para uma palavra. Um tokenizador treinado em português a reconhece como um único token.</p>
+      <p>Na prática, isso significa que um texto em português brasileiro gasta entre 20% e 35% mais tokens do que o equivalente em inglês no mesmo modelo. Para um produto que cobra por token, isso é diretamente um imposto sobre o usuário brasileiro.</p>
+      <h2>Nossa solução no <em>Sena V1.0</em></h2>
+      <ul>
+        <li>Vocabulário de 50.000 tokens treinado em corpus brasileiro</li>
+        <li>Palavras comuns em PT-BR como tokens únicos</li>
+        <li>Acentuação e caracteres especiais tratados nativamente</li>
+        <li>Gírias e neologismos incluídos no vocabulário base</li>
+      </ul>
+      <p>O resultado: textos em português no Sena V1.0 usam em média 22% menos tokens do que no mesmo texto processado por tokenizadores genéricos — o que se traduz diretamente em custo menor e qualidade de compreensão superior.</p>
+    `
+  },
+  admob: {
+    cat: 'Produto',
+    title: 'Monetização de <em>apps de IA no Brasil</em>: AdMob, AdSense e LGPD',
+    date: 'Julho 2024 · 8 min de leitura',
+    content: `
+      <p>Monetizar um produto de IA gratuito no Brasil tem desafios únicos: o custo de inferência é real, mas o poder aquisitivo do usuário médio impede assinaturas caras. A publicidade contextual é a ponte — mas precisa ser feita com respeito à LGPD e à experiência do usuário.</p>
+      <h2>Fluxo de consentimento <em>LGPD-compliant</em></h2>
+      <p>Implementamos um modal de consentimento que aparece na primeira visita e oferece três opções claras: aceitar tudo, personalizar por categoria, ou recusar publicidade personalizada. A escolha é armazenada e respeitada em todas as sessões subsequentes.</p>
+      <ul>
+        <li>TCF v2.2 para conformidade com o ecossistema do Google</li>
+        <li>Modo de consentimento ativado: sem cookies de advertising antes do aceite</li>
+        <li>Botão de revisão de preferências sempre acessível no footer</li>
+        <li>Consentimento registrado com timestamp para auditoria</li>
+      </ul>
+      <h2>AdMob no <em>app Android</em></h2>
+      <p>No app Android do Claudinei, usamos anúncios intersticiais entre sessões de conversa e banners na tela principal. O timing é calibrado para não interromper conversas ativas — o usuário vê publicidade entre interações, não durante elas.</p>
+      <blockquote>A publicidade pode ser respeitosa. O segredo é escolher o momento certo, não o momento mais lucrativo.</blockquote>
+      <h2>Resultados e <em>aprendizados</em></h2>
+      <p>A taxa de aceitação de cookies foi de 68% nos primeiros 30 dias — acima da média do setor para modais LGPD bem implementados. A chave foi linguagem clara, opções genuínas e ausência de dark patterns.</p>
+    `
+  }
+};
+
+function openArticle(id) {
+  const a = articles[id];
+  if (!a) return;
+  const body = document.getElementById('article-body');
+  body.innerHTML = `
+    <div class="article-cat">${a.cat}</div>
+    <h1 class="article-h1">${a.title}</h1>
+    <div class="article-date">${a.date} · Telos Lab</div>
+    <div class="article-content">${a.content}</div>
+  `;
+  const overlay = document.getElementById('article-overlay');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  overlay.scrollTop = 0;
+}
+
+function closeArticle() {
+  document.getElementById('article-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+
+// Newsletter
+function subscribeNewsletter(btn) {
+  const input = btn.previousElementSibling;
+  if (!input.value || !input.value.includes('@')) {
+    input.style.borderColor = 'rgba(220,80,80,0.5)';
+    setTimeout(() => input.style.borderColor = '', 1500);
+    return;
+  }
+  btn.textContent = 'Inscrito! ✓';
+  btn.style.background = '#7dc87d';
+  input.value = '';
+  setTimeout(() => { btn.textContent = 'Inscrever-se'; btn.style.background = ''; }, 3000);
+}
+
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
