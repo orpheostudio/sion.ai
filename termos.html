@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso — Telos Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:         #1B3A5C;
+  --navy-deep:    #0f2239;
+  --navy-mid:     #1e3f68;
+  --gold:         #C4973A;
+  --gold-light:   #d9af5a;
+  --gold-dim:     rgba(196,151,58,0.10);
+  --gold-border:  rgba(196,151,58,0.22);
+  --cream:        #F5F0E8;
+  --white:        #FAFAF8;
+  --muted:        rgba(245,240,232,0.50);
+  --muted2:       rgba(245,240,232,0.28);
+  --text-body:    rgba(245,240,232,0.72);
+  --border:       rgba(196,151,58,0.18);
+  --border-sub:   rgba(245,240,232,0.07);
+  --sidebar-w:    272px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy-deep);
+  color: var(--cream);
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── BACKGROUND TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 5% 10%,  rgba(196,151,58,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 70% at 95% 90%, rgba(27,58,92,0.55)   0%, transparent 60%),
+    repeating-linear-gradient(0deg,   transparent, transparent 79px, rgba(245,240,232,0.015) 80px),
+    repeating-linear-gradient(90deg,  transparent, transparent 79px, rgba(245,240,232,0.015) 80px);
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  background: rgba(15,34,57,0.88);
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--border-sub);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 26px; height: 26px; border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.nav-badge {
+  font-family: 'DM Mono', monospace; font-size: 0.57rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--navy-deep); background: var(--gold); padding: 2px 8px;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy-deep); background: var(--gold); border: none;
+  padding: 8px 18px; cursor: pointer; text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+
+/* ── HERO ── */
+.page-hero {
+  position: relative; z-index: 1;
+  padding: 72px 48px 56px;
+  border-bottom: 1px solid var(--border-sub);
+  max-width: 1200px; margin: 0 auto;
+}
+.hero-top {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 40px;
+  flex-wrap: wrap; margin-bottom: 28px;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::after { content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.4; }
+.page-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 300;
+  line-height: 1.05; color: var(--white); letter-spacing: -0.01em;
+}
+.page-h1 em { font-style: italic; color: var(--gold); }
+.hero-meta {
+  text-align: right; flex-shrink: 0;
+}
+.meta-version {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 4px;
+}
+.meta-date {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.1em; color: var(--muted2);
+}
+.hero-notice {
+  border: 1px solid var(--gold-border);
+  background: var(--gold-dim);
+  padding: 14px 20px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.notice-icon {
+  font-size: 0.75rem; font-family: 'DM Mono', monospace;
+  color: var(--gold); letter-spacing: 0.1em; flex-shrink: 0;
+  margin-top: 1px; text-transform: uppercase;
+}
+.notice-text {
+  font-size: 0.80rem; color: var(--muted); line-height: 1.65;
+  font-style: italic;
+}
+.notice-text strong { color: var(--cream); font-weight: 500; font-style: normal; }
+
+/* ── LAYOUT ── */
+.doc-layout {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: sticky; top: 64px;
+  height: calc(100vh - 64px);
+  overflow-y: auto; overflow-x: hidden;
+  border-right: 1px solid var(--border-sub);
+  padding: 32px 0 48px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.sb-group { margin-bottom: 8px; }
+.sb-group-label {
+  font-family: 'DM Mono', monospace; font-size: 0.57rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  padding: 10px 20px 6px; display: block; opacity: 0.7;
+}
+.sb-links { list-style: none; }
+.sb-links li a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 20px; font-size: 0.78rem;
+  color: var(--muted); text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.15s; line-height: 1.4;
+}
+.sb-links li a:hover { color: var(--cream); background: rgba(245,240,232,0.04); }
+.sb-links li a.active {
+  color: var(--gold); border-left-color: var(--gold);
+  background: var(--gold-dim);
+}
+.sb-num {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  color: var(--gold); opacity: 0.6; flex-shrink: 0; width: 16px;
+}
+
+.sb-print-btn {
+  margin: 24px 20px 0;
+  display: block; width: calc(100% - 40px);
+  padding: 9px 0; text-align: center;
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--border-sub);
+  background: transparent; cursor: pointer; transition: all 0.2s;
+}
+.sb-print-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── MAIN CONTENT ── */
+.doc-main {
+  padding: 52px 64px 80px;
+  min-width: 0;
+}
+
+/* ── SECTION ── */
+.doc-section {
+  margin-bottom: 56px;
+  scroll-margin-top: 80px;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.doc-section.visible { opacity: 1; transform: translateY(0); }
+
+.sec-header {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 20px; padding-bottom: 14px;
+  border-bottom: 1px solid;
+  border-image: linear-gradient(90deg, var(--gold) 0%, transparent 70%) 1;
+}
+.sec-num {
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.16em; color: var(--gold); flex-shrink: 0;
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 300;
+  color: var(--white); line-height: 1.2;
+}
+.sec-title em { font-style: italic; color: var(--gold); }
+
+/* ── SUBSECTION ── */
+.subsec { margin-bottom: 28px; }
+.subsec-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--cream); letter-spacing: 0.04em;
+  margin-bottom: 10px; margin-top: 24px;
+  display: flex; align-items: center; gap: 8px;
+}
+.subsec-title::before {
+  content: ''; width: 12px; height: 1px;
+  background: var(--gold); flex-shrink: 0;
+}
+
+/* ── BODY TEXT ── */
+p.doc-p {
+  font-size: 0.875rem; color: var(--text-body);
+  line-height: 1.85; margin-bottom: 14px;
+  text-align: justify; hyphens: auto;
+}
+p.doc-p strong { color: var(--cream); font-weight: 500; }
+p.doc-p a { color: var(--gold); text-decoration: none; }
+p.doc-p a:hover { text-decoration: underline; }
+
+/* ── LISTS ── */
+.doc-list {
+  list-style: none; padding: 0;
+  margin: 12px 0 16px; display: flex; flex-direction: column; gap: 7px;
+}
+.doc-list li {
+  font-size: 0.865rem; color: var(--text-body);
+  line-height: 1.75; padding-left: 22px; position: relative;
+}
+.doc-list li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--gold); font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; top: 3px;
+}
+
+/* ── HIGHLIGHT BOX ── */
+.doc-highlight {
+  border-left: 3px solid var(--gold);
+  background: var(--gold-dim);
+  padding: 14px 18px; margin: 16px 0;
+  font-size: 0.845rem; color: var(--cream);
+  line-height: 1.7; font-style: italic;
+}
+.doc-highlight strong { font-style: normal; font-weight: 600; color: var(--gold); }
+
+/* ── ALERT BOXES ── */
+.doc-alert {
+  border: 1px solid; padding: 14px 18px; margin: 16px 0;
+  font-size: 0.835rem; line-height: 1.7;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.doc-alert.warn {
+  border-color: var(--gold-border); background: var(--gold-dim); color: var(--cream);
+}
+.doc-alert.info {
+  border-color: rgba(74,168,216,0.25); background: rgba(74,168,216,0.06); color: var(--cream);
+}
+.alert-icon {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase; flex-shrink: 0; margin-top: 2px;
+}
+.doc-alert.warn .alert-icon { color: var(--gold); }
+.doc-alert.info .alert-icon { color: #4aa8d8; }
+
+/* ── DEFINITIONS ── */
+.def-grid {
+  display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--border-sub); margin: 16px 0;
+  overflow: hidden;
+}
+.def-row {
+  display: grid; grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--border-sub);
+  transition: background 0.15s;
+}
+.def-row:last-child { border-bottom: none; }
+.def-row:hover { background: rgba(245,240,232,0.03); }
+.def-term {
+  padding: 11px 16px;
+  font-family: 'DM Mono', monospace; font-size: 0.72rem;
+  color: var(--gold-light); letter-spacing: 0.06em;
+  border-right: 1px solid var(--border-sub);
+  display: flex; align-items: center;
+  background: rgba(196,151,58,0.04);
+}
+.def-val {
+  padding: 11px 16px;
+  font-size: 0.835rem; color: var(--text-body); line-height: 1.65;
+}
+
+/* ── CATEGORY LABEL ── */
+.cat-label {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--navy-deep); background: var(--navy-mid);
+  border: 1px solid var(--border-sub);
+  padding: 4px 10px; display: inline-block;
+  margin: 14px 0 8px; color: var(--gold);
+}
+
+/* ── CAPS TEXT (for legal disclaimers) ── */
+.caps-legal {
+  font-size: 0.775rem; color: var(--muted); line-height: 1.8;
+  margin-bottom: 14px; text-align: justify;
+  font-family: 'DM Mono', monospace; letter-spacing: 0.03em;
+  border: 1px solid var(--border-sub); padding: 16px 18px;
+  background: rgba(245,240,232,0.02);
+}
+
+/* ── DIVIDER ── */
+.doc-divider {
+  height: 1px; background: var(--border-sub); margin: 32px 0;
+}
+
+/* ── TABLE OF SECTIONS CARD ── */
+.toc-card {
+  border: 1px solid var(--border);
+  padding: 24px 28px; margin-bottom: 48px;
+  background: rgba(15,34,57,0.4);
+}
+.toc-card-title {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-sub);
+}
+.toc-items {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px;
+  list-style: none;
+}
+.toc-items li a {
+  display: flex; gap: 8px; align-items: baseline;
+  font-size: 0.8rem; color: var(--muted); text-decoration: none;
+  padding: 4px 0; transition: color 0.2s;
+}
+.toc-items li a:hover { color: var(--gold); }
+.toc-items li a .ti-num {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  color: var(--gold); opacity: 0.6; flex-shrink: 0;
+}
+
+/* ── SIGNATURE BLOCK ── */
+.sig-block {
+  border-top: 2px solid var(--border);
+  padding-top: 40px; margin-top: 40px;
+  text-align: center;
+}
+.sig-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300; color: var(--white);
+  letter-spacing: 0.06em; margin-bottom: 6px;
+}
+.sig-logo span { color: var(--gold); }
+.sig-sub {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.14em; color: var(--muted2); text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.sig-meta {
+  font-size: 0.78rem; color: var(--muted); line-height: 1.8;
+}
+.sig-meta a { color: var(--gold); text-decoration: none; }
+.sig-note {
+  margin-top: 24px; padding: 14px 20px;
+  border: 1px solid var(--border-sub); font-size: 0.75rem;
+  color: var(--muted2); font-style: italic; line-height: 1.65;
+  max-width: 560px; margin-left: auto; margin-right: auto;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; gap: 24px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--muted);
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-logo-mark {
+  width: 20px; height: 20px; border: 1px solid rgba(196,151,58,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem; font-family: 'DM Mono', monospace; color: var(--gold);
+}
+.footer-nav { display: flex; gap: 20px; list-style: none; }
+.footer-nav a {
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--gold); }
+.footer-right {
+  text-align: right; font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; color: rgba(245,240,232,0.22); letter-spacing: 0.05em;
+}
+.footer-right a { color: var(--gold); text-decoration: none; }
+
+/* ── PROGRESS BAR ── */
+#read-progress {
+  position: fixed; top: 0; left: 0; z-index: 300;
+  height: 2px; background: var(--gold);
+  width: 0%; transition: width 0.1s linear;
+}
+
+/* ── BACK TO TOP ── */
+#back-top {
+  position: fixed; bottom: 32px; right: 32px; z-index: 100;
+  width: 40px; height: 40px;
+  border: 1px solid var(--border);
+  background: rgba(15,34,57,0.9);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold);
+  cursor: pointer; opacity: 0; transition: opacity 0.3s, border-color 0.2s;
+  text-decoration: none;
+}
+#back-top.visible { opacity: 1; }
+#back-top:hover { border-color: var(--gold); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  :root { --sidebar-w: 0px; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .doc-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .doc-main { padding: 36px 24px 60px; }
+  .page-hero { padding: 56px 24px 40px; }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .footer-right { text-align: center; }
+  .toc-items { grid-template-columns: 1fr; }
+  .def-row { grid-template-columns: 1fr; }
+  .def-term { border-right: none; border-bottom: 1px solid var(--border-sub); }
+  .hero-top { flex-direction: column; align-items: flex-start; }
+  .hero-meta { text-align: left; }
+}
+
+@media print {
+  nav, .sidebar, #back-top, #read-progress, footer { display: none !important; }
+  .doc-layout { grid-template-columns: 1fr; }
+  .doc-main { padding: 24px; }
+  body { background: white; color: #111; }
+  .doc-section { opacity: 1; transform: none; }
+  .page-hero { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+
+<!-- NAV -->
+<<!-- Logo -->
+  <a href="https://seudominio.com" class="nav-logo">
+    <div class="https://i.imgur.com/uTkYfm6.jpeg">Telos</div>
+    Telos
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Produto</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="telos-pricing.html">Preços</a></li>
+  </ul>
+  <a href="index.html" class="nav-cta">Voltar ao site</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-top">
+    <div>
+      <div class="hero-eyebrow">Documentos Legais</div>
+      <h1 class="page-h1">Bem Vindo a &amp;<br><em>Telos Technologies</em></h1>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-version">Versão 1.0</div>
+      <div class="meta-date">Janeiro de 2025</div>
+      <div class="meta-date" style="margin-top:4px;">Termos de Uso.</div>
+    </div>
+  </div>
+  <div class="hero-notice">
+    <span class="notice-icon">Aviso</span>
+    <span class="notice-text">
+      Este documento constitui um <strong>contrato legalmente vinculante</strong> entre você e a Tellos Tecnologia LTDA. Ao acessar ou utilizar qualquer serviço da Telos Technologies, você declara ter lido, compreendido e concordado integralmente com estes Termos.
+    </span>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="doc-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-group">
+      <span class="sb-group-label">Sumário</span>
+      <ul class="sb-links">
+        <li><a href="#s1"><span class="sb-num">01</span>Identificação das Partes</a></li>
+        <li><a href="#s2"><span class="sb-num">02</span>Definições</a></li>
+        <li><a href="#s3"><span class="sb-num">03</span>Conta e Acesso</a></li>
+        <li><a href="#s4"><span class="sb-num">04</span>Serviços e Disponibilidade</a></li>
+        <li><a href="#s5"><span class="sb-num">05</span>Uso Aceitável</a></li>
+        <li><a href="#s6"><span class="sb-num">06</span>Propriedade Intelectual</a></li>
+        <li><a href="#s7"><span class="sb-num">07</span>Privacidade e LGPD</a></li>
+        <li><a href="#s8"><span class="sb-num">08</span>Pagamentos</a></li>
+        <li><a href="#s9"><span class="sb-num">09</span>Limitação de Responsabilidade</a></li>
+        <li><a href="#s10"><span class="sb-num">10</span>Vigência e Encerramento</a></li>
+        <li><a href="#s11"><span class="sb-num">11</span>Segurança da Informação</a></li>
+        <li><a href="#s12"><span class="sb-num">12</span>Disposições Gerais</a></li>
+      </ul>
+    </div>
+    <button class="sb-print-btn" onclick="window.print()">⎙ Imprimir / PDF</button>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="doc-main">
+
+    <!-- TOC CARD -->
+    <div class="toc-card doc-section visible">
+      <div class="toc-card-title">Índice — Termos de Uso v1.0</div>
+      <ul class="toc-items">
+        <li><a href="#s1"><span class="ti-num">01.</span> Identificação das Partes e Âmbito</a></li>
+        <li><a href="#s2"><span class="ti-num">02.</span> Definições</a></li>
+        <li><a href="#s3"><span class="ti-num">03.</span> Conta de Usuário e Acesso</a></li>
+        <li><a href="#s4"><span class="ti-num">04.</span> Serviços e Disponibilidade</a></li>
+        <li><a href="#s5"><span class="ti-num">05.</span> Política de Uso Aceitável</a></li>
+        <li><a href="#s6"><span class="ti-num">06.</span> Propriedade Intelectual e Licenças</a></li>
+        <li><a href="#s7"><span class="ti-num">07.</span> Privacidade, Proteção de Dados e LGPD</a></li>
+        <li><a href="#s8"><span class="ti-num">08.</span> Pagamentos, Planos e Faturamento</a></li>
+        <li><a href="#s9"><span class="ti-num">09.</span> Isenções e Limitação de Responsabilidade</a></li>
+        <li><a href="#s10"><span class="ti-num">10.</span> Vigência, Suspensão e Encerramento</a></li>
+        <li><a href="#s11"><span class="ti-num">11.</span> Segurança da Informação</a></li>
+        <li><a href="#s12"><span class="ti-num">12.</span> Disposições Gerais</a></li>
+      </ul>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 1 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s1">
+      <div class="sec-header">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">Identificação das Partes e <em>Âmbito de Aplicação</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">1.1 Prestadora dos Serviços</div>
+        <p class="doc-p">Os presentes Termos de Uso ("Termos") regem a relação contratual entre o Usuário e a <strong>Tellos Tecnologia LTDA.</strong>, sociedade empresária de responsabilidade limitada, com atividades no Brasil, sob o nome fantasia <strong>Telos Technologies</strong> ("Empresa", "nós", "nos" ou "nosso").</p>
+        <p class="doc-p">Para quaisquer questões relacionadas a estes Termos, o Usuário pode entrar em contato através do endereço eletrônico: <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">1.2 Serviços Abrangidos</div>
+        <p class="doc-p">Estes Termos aplicam-se a todos os serviços prestados pela Telos Technologies, incluindo, sem limitação:</p>
+        <ul class="doc-list">
+          <li><strong>Claudinei AI</strong> — assistente de inteligência artificial acessível via interface web e aplicativo móvel;</li>
+          <li><strong>API Sena V1.0</strong> — interface de programação de aplicações para integração do motor Sena em produtos de terceiros;</li>
+          <li><strong>Família Claudinei</strong> — conjunto de produtos derivados construídos sobre o Motor Sena, incluindo Sion AI, Aion AI e demais aplicações;</li>
+          <li><strong>Portal do Desenvolvedor</strong> — documentação, ferramentas e recursos de suporte à integração da API;</li>
+          <li>Quaisquer outros serviços futuros oferecidos pela Telos Technologies que façam referência a estes Termos.</li>
+        </ul>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">1.3 Aceitação e Capacidade</div>
+        <p class="doc-p">Ao utilizar os Serviços, o Usuário declara e garante que:</p>
+        <ul class="doc-list">
+          <li>possui capacidade civil plena para celebrar contratos, sendo maior de 18 (dezoito) anos ou emancipado; ou</li>
+          <li>sendo pessoa jurídica, o representante que aceita estes Termos possui poderes para tanto e age em nome da empresa.</li>
+        </ul>
+        <p class="doc-p">O uso dos Serviços por menores de 18 anos somente é permitido com expressa autorização e supervisão de pais ou responsáveis legais, que assumirão plena responsabilidade pelo uso.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 2 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s2">
+      <div class="sec-header">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title"><em>Definições</em></h2>
+      </div>
+      <p class="doc-p">Para fins destes Termos, os seguintes termos têm os significados abaixo:</p>
+      <div class="def-grid">
+        <div class="def-row"><div class="def-term">"API"</div><div class="def-val">Interface de programação de aplicações que permite acesso programático ao Motor Sena V1.0 via protocolo REST.</div></div>
+        <div class="def-row"><div class="def-term">"Chave de API"</div><div class="def-val">Credencial única e intransferível, prefixada com <code style="font-family:'DM Mono',monospace;font-size:0.8em;color:var(--gold-light);">telos_sk_</code>, utilizada para autenticar requisições à API.</div></div>
+        <div class="def-row"><div class="def-term">"Conta"</div><div class="def-val">Registro pessoal ou empresarial criado pelo Usuário para acessar os Serviços.</div></div>
+        <div class="def-row"><div class="def-term">"Conteúdo"</div><div class="def-val">Todo e qualquer texto, dado, imagem, código, instrução ou material transmitido, gerado, processado ou armazenado por meio dos Serviços.</div></div>
+        <div class="def-row"><div class="def-term">"Conteúdo do Usuário"</div><div class="def-val">Conteúdo submetido, inserido ou transmitido pelo Usuário, incluindo prompts, instruções de sistema e históricos de conversa.</div></div>
+        <div class="def-row"><div class="def-term">"Conteúdo Gerado"</div><div class="def-val">Conteúdo produzido pelo Motor Sena em resposta ao Conteúdo do Usuário.</div></div>
+        <div class="def-row"><div class="def-term">"Dados Pessoais"</div><div class="def-val">Qualquer informação relacionada a pessoa natural identificada ou identificável, conforme definido pela Lei nº 13.709/2018 (LGPD).</div></div>
+        <div class="def-row"><div class="def-term">"Motor Sena"</div><div class="def-val">Sistema proprietário de inferência de linguagem natural da Telos Technologies, incluindo o modelo claudinei-sena-v1 e suas variantes.</div></div>
+        <div class="def-row"><div class="def-term">"Plano"</div><div class="def-val">Nível de acesso contratado pelo Usuário (Free, Pro, Scale ou Enterprise), com quotas e funcionalidades específicas.</div></div>
+        <div class="def-row"><div class="def-term">"Token"</div><div class="def-val">Unidade básica de processamento de texto pelo Motor Sena, aproximadamente equivalente a 0,75 palavras em português.</div></div>
+        <div class="def-row"><div class="def-term">"Uso Aceitável"</div><div class="def-val">Conjunto de usos permitidos dos Serviços, conforme definido na Seção 5 destes Termos.</div></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 3 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s3">
+      <div class="sec-header">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Conta de Usuário e <em>Acesso aos Serviços</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">3.1 Criação de Conta</div>
+        <p class="doc-p">O acesso a determinados Serviços requer a criação de uma Conta. O Usuário compromete-se a fornecer informações verdadeiras, precisas, atuais e completas durante o cadastro e a mantê-las atualizadas. O uso de informações falsas pode resultar no encerramento imediato da Conta.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">3.2 Segurança da Conta</div>
+        <p class="doc-p">O Usuário é exclusivamente responsável pela:</p>
+        <ul class="doc-list">
+          <li>Confidencialidade de suas credenciais de acesso (senha e Chave de API);</li>
+          <li>Todas as atividades realizadas em sua Conta, inclusive por terceiros não autorizados;</li>
+          <li>Notificação imediata à Telos Technologies de qualquer acesso não autorizado suspeito.</li>
+        </ul>
+        <p class="doc-p">A Telos Technologies não poderá ser responsabilizada por perdas ou danos decorrentes de acesso não autorizado resultante de falha do Usuário em proteger suas credenciais.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">3.3 Chaves de API</div>
+        <p class="doc-p">As Chaves de API são pessoais e intransferíveis. O Usuário não poderá compartilhar, vender, transferir ou sublicenciar Chaves de API. Chaves de API identificadas como comprometidas serão imediatamente revogadas pela Telos Technologies.</p>
+        <div class="doc-highlight">
+          <strong>Atenção:</strong> Nunca exponha sua Chave de API em código client-side, repositórios públicos ou qualquer meio de comunicação não seguro. Utilize variáveis de ambiente em ambientes de produção.
+        </div>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">3.4 Múltiplas Contas</div>
+        <p class="doc-p">A Telos Technologies reserva-se o direito de encerrar contas adicionais se verificar que um mesmo Usuário ou organização utiliza múltiplas contas com o objetivo de contornar limites do Plano gratuito ou violações destes Termos.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 4 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s4">
+      <div class="sec-header">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Descrição dos Serviços e <em>Disponibilidade</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">4.1 Natureza dos Serviços</div>
+        <p class="doc-p">Os Serviços da Telos Technologies são ferramentas de inteligência artificial generativa baseadas no Motor Sena V1.0. O Conteúdo Gerado é produzido por modelos probabilísticos de linguagem e pode conter imprecisões, erros ou informações desatualizadas. O Usuário deve avaliar criticamente todo Conteúdo Gerado antes de utilizá-lo para qualquer finalidade.</p>
+        <div class="doc-alert warn">
+          <span class="alert-icon">Atenção</span>
+          <span>O Claudinei AI e o Motor Sena <strong>não substituem aconselhamento profissional qualificado</strong> em áreas como medicina, direito, finanças, engenharia ou qualquer outra área regulamentada. Consulte sempre profissionais habilitados para decisões relevantes.</span>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">4.2 Disponibilidade e SLA</div>
+        <p class="doc-p">A Telos Technologies oferece os seguintes compromissos de disponibilidade, conforme o Plano contratado:</p>
+        <ul class="doc-list">
+          <li><strong>Plano Free:</strong> sem garantia de SLA; serviço oferecido no estado em que se encontra.</li>
+          <li><strong>Plano Pro:</strong> disponibilidade mínima de 99,5% medida mensalmente.</li>
+          <li><strong>Plano Scale:</strong> disponibilidade mínima de 99,9% medida mensalmente.</li>
+          <li><strong>Plano Enterprise:</strong> disponibilidade mínima de 99,99%, conforme contrato específico.</li>
+        </ul>
+        <p class="doc-p">Períodos de manutenção programada, devidamente comunicados com no mínimo 48 horas de antecedência, não são computados como indisponibilidade.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">4.3 Modificações nos Serviços</div>
+        <p class="doc-p">A Telos Technologies reserva-se o direito de, a qualquer momento: (i) modificar, suspender ou encerrar qualquer funcionalidade dos Serviços; (ii) alterar limites de uso, modelos disponíveis e estrutura de preços, com aviso prévio de 30 dias por e-mail para usuários pagantes; e (iii) lançar novas versões do Motor Sena, podendo descontinuar versões anteriores com aviso prévio mínimo de 90 dias.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 5 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s5">
+      <div class="sec-header">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title">Política de <em>Uso Aceitável</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">5.1 Usos Permitidos</div>
+        <p class="doc-p">Os Serviços podem ser utilizados para fins lícitos, incluindo, sem limitação:</p>
+        <ul class="doc-list">
+          <li>Desenvolvimento e teste de aplicações de software;</li>
+          <li>Atendimento ao cliente, suporte e automação de processos empresariais;</li>
+          <li>Criação, edição e melhoria de conteúdo textual;</li>
+          <li>Análise e síntese de documentos e informações;</li>
+          <li>Educação, pesquisa acadêmica e desenvolvimento pessoal;</li>
+          <li>Integração em produtos e serviços comerciais, nos limites destes Termos.</li>
+        </ul>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">5.2 Usos Expressamente Proibidos</div>
+
+        <span class="cat-label">a) Conteúdo Ilegal e Prejudicial</span>
+        <ul class="doc-list">
+          <li>Gerar, distribuir ou facilitar conteúdo que viole a legislação brasileira ou internacional aplicável;</li>
+          <li>Produzir material que explore, abuse ou cause dano a crianças e adolescentes, incluindo qualquer forma de conteúdo sexual envolvendo menores (crime previsto no ECA);</li>
+          <li>Criar conteúdo que incite violência, ódio ou discriminação com base em raça, etnia, religião, gênero, orientação sexual, deficiência ou qualquer outra característica protegida por lei;</li>
+          <li>Gerar deepfakes, conteúdo sintético ou material enganoso com potencial de causar dano a pessoas reais identificáveis.</li>
+        </ul>
+
+        <span class="cat-label">b) Atividades Fraudulentas e de Segurança</span>
+        <ul class="doc-list">
+          <li>Criar malware, ransomware, vírus, cavalos de Troia ou qualquer código malicioso;</li>
+          <li>Desenvolver ou auxiliar ataques cibernéticos, engenharia social, phishing ou qualquer forma de fraude digital;</li>
+          <li>Contornar, desabilitar ou interferir em mecanismos de segurança, autenticação ou controle de acesso;</li>
+          <li>Realizar engenharia reversa, decompilar ou desmontar qualquer componente dos Serviços.</li>
+        </ul>
+
+        <span class="cat-label">c) Violações de Privacidade e Dados</span>
+        <ul class="doc-list">
+          <li>Coletar, processar ou divulgar Dados Pessoais de terceiros sem base legal adequada;</li>
+          <li>Criar perfis comportamentais de indivíduos sem consentimento válido;</li>
+          <li>Tentar identificar pessoas a partir de dados anonimizados;</li>
+          <li>Usar os Serviços para vigilância em massa ou monitoramento não autorizado de indivíduos.</li>
+        </ul>
+
+        <span class="cat-label">d) Abusos Técnicos e de Plataforma</span>
+        <ul class="doc-list">
+          <li>Realizar ou facilitar ataques de negação de serviço (DoS/DDoS) contra qualquer infraestrutura;</li>
+          <li>Usar os Serviços para mineração de criptomoedas, spam ou qualquer finalidade não autorizada;</li>
+          <li>Revender, sublicenciar ou redistribuir acesso à API sem contrato Enterprise específico;</li>
+          <li>Tentar contornar limites de uso do Plano gratuito por meio de múltiplas contas ou outros meios.</li>
+        </ul>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">5.3 Aplicações de Alto Risco</div>
+        <p class="doc-p">O uso dos Serviços para as seguintes aplicações de alto risco é expressamente proibido sem contrato Enterprise específico e avaliação de risco prévia:</p>
+        <ul class="doc-list">
+          <li>Sistemas de suporte à vida ou aplicações médicas de diagnóstico direto;</li>
+          <li>Controle de infraestrutura crítica (energia, água, transporte, telecomunicações);</li>
+          <li>Sistemas de armas autônomas ou qualquer aplicação militar operacional;</li>
+          <li>Tomada de decisões jurídicas ou administrativas vinculantes sem supervisão humana qualificada.</li>
+        </ul>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">5.4 Consequências da Violação</div>
+        <p class="doc-p">A violação desta Política de Uso Aceitável pode resultar, a critério exclusivo da Telos Technologies, em: suspensão temporária ou encerramento permanente da Conta; retenção de pagamentos; divulgação às autoridades competentes; e responsabilização civil e criminal nos termos da legislação brasileira aplicável.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 6 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s6">
+      <div class="sec-header">
+        <span class="sec-num">06</span>
+        <h2 class="sec-title">Propriedade Intelectual e <em>Licenças</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">6.1 Propriedade da Telos Technologies</div>
+        <p class="doc-p">A Telos Technologies detém todos os direitos de propriedade intelectual sobre os Serviços, incluindo, sem limitação: o Motor Sena V1.0 e seus pesos e parâmetros; o código-fonte de todos os produtos da Família Claudinei; as marcas Telos Technologies, Claudinei AI e Sena; a documentação técnica; e os dados de treinamento proprietários. Estes Termos não transferem qualquer titularidade de propriedade intelectual ao Usuário.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">6.2 Licença de Uso dos Serviços</div>
+        <p class="doc-p">Sujeito ao cumprimento destes Termos e ao pagamento das taxas aplicáveis, a Telos Technologies concede ao Usuário uma licença <strong>limitada, não exclusiva, não sublicenciável, revogável e intransferível</strong> para acessar e usar os Serviços exclusivamente para as finalidades autorizadas por estes Termos.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">6.3 Propriedade do Conteúdo do Usuário</div>
+        <p class="doc-p">O Usuário retém todos os direitos de propriedade intelectual sobre o Conteúdo do Usuário. Ao submeter Conteúdo do Usuário, o Usuário concede à Telos Technologies uma licença mundial, não exclusiva, royalty-free, para processar, transmitir e armazenar tal conteúdo exclusivamente para a prestação dos Serviços.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">6.4 Propriedade do Conteúdo Gerado</div>
+        <p class="doc-p">A Telos Technologies não reivindica propriedade sobre o Conteúdo Gerado em resposta ao Conteúdo do Usuário. O Usuário é responsável por determinar se o Conteúdo Gerado é adequado para seus fins e pela sua conformidade legal. A Telos Technologies não garante que o Conteúdo Gerado seja livre de direitos de terceiros.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">6.5 Proibição de Uso para Treinamento Competitivo</div>
+        <p class="doc-p">É expressamente proibido utilizar os Serviços, o Conteúdo Gerado ou qualquer saída do Motor Sena para treinar, ajustar, melhorar ou desenvolver modelos de linguagem ou sistemas de inteligência artificial concorrentes, sem autorização prévia e por escrito da Telos Technologies.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 7 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s7">
+      <div class="sec-header">
+        <span class="sec-num">07</span>
+        <h2 class="sec-title">Privacidade, Proteção de Dados e <em>LGPD</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">7.1 Lei Aplicável</div>
+        <p class="doc-p">O tratamento de Dados Pessoais pela Telos Technologies é regido pela <strong>Lei nº 13.709/2018 (LGPD)</strong> e regulamentações complementares editadas pela Autoridade Nacional de Proteção de Dados (ANPD). A Telos Technologies atua como Controladora dos dados dos Usuários e como Operadora dos dados transmitidos pelo Usuário na qualidade de Controlador em suas próprias aplicações.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">7.2 Dados Coletados</div>
+        <ul class="doc-list">
+          <li><strong>Dados de cadastro:</strong> nome, endereço de e-mail, dados da empresa (para planos empresariais);</li>
+          <li><strong>Dados de uso:</strong> logs de requisições, contagens de tokens, modelos utilizados e timestamps;</li>
+          <li><strong>Dados técnicos:</strong> endereço IP, tipo de navegador, sistema operacional e identificadores de dispositivo;</li>
+          <li><strong>Conteúdo de Conversas:</strong> no Plano Free, conversas podem ser analisadas para fins de segurança e melhoria de serviço; nos planos pagos, aplicam-se as garantias da Seção 7.4.</li>
+        </ul>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">7.3 Finalidades e Bases Legais do Tratamento</div>
+        <ul class="doc-list">
+          <li>Prestação dos Serviços contratados — <em>execução de contrato</em> (Art. 7º, V, LGPD);</li>
+          <li>Cumprimento de obrigações legais e regulatórias — <em>obrigação legal</em> (Art. 7º, II, LGPD);</li>
+          <li>Prevenção à fraude e segurança — <em>legítimo interesse</em> (Art. 7º, IX, LGPD);</li>
+          <li>Comunicações sobre os Serviços — execução de contrato ou legítimo interesse;</li>
+          <li>Melhoria dos Serviços (dados anonimizados) — legítimo interesse.</li>
+        </ul>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">7.4 Garantias para Planos Pagos</div>
+        <p class="doc-p">Para usuários dos Planos Pro, Scale e Enterprise, a Telos Technologies garante que:</p>
+        <ul class="doc-list">
+          <li>O Conteúdo do Usuário transmitido via API <strong>não é utilizado para treinar ou melhorar modelos de linguagem;</strong></li>
+          <li>Os dados são processados exclusivamente em <strong>servidores localizados no Brasil;</strong></li>
+          <li>O Conteúdo de Conversas não é acessado por funcionários da Telos Technologies, exceto mediante ordem judicial;</li>
+          <li>Os dados são retidos pelo período mínimo necessário à prestação dos Serviços e pelo prazo legal aplicável.</li>
+        </ul>
+        <div class="doc-alert info">
+          <span class="alert-icon">Info</span>
+          <span>Clientes Enterprise podem solicitar um <strong>Acordo de Processamento de Dados (DPA)</strong> com garantias contratuais adicionais, incluindo cláusulas de isolamento de dados e obrigações de notificação de incidentes. Contato: <a href="mailto:ampla.ai@outlook.com?subject=DPA">ampla.ai@outlook.com</a></span>
+        </div>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">7.5 Direitos dos Titulares de Dados</div>
+        <p class="doc-p">O Usuário, na qualidade de titular de dados, poderá exercer os seguintes direitos, mediante solicitação para <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>:</p>
+        <ul class="doc-list">
+          <li>Confirmação da existência de tratamento e acesso aos dados;</li>
+          <li>Correção de dados incompletos, inexatos ou desatualizados;</li>
+          <li>Anonimização, bloqueio ou eliminação de dados desnecessários;</li>
+          <li>Portabilidade dos dados a outro fornecedor de serviço;</li>
+          <li>Eliminação dos dados tratados com consentimento;</li>
+          <li>Informação sobre compartilhamento de dados com terceiros;</li>
+          <li>Revogação do consentimento, quando aplicável.</li>
+        </ul>
+        <p class="doc-p">A Telos Technologies responderá às solicitações no prazo de 15 (quinze) dias úteis, conforme prazo estabelecido pela ANPD.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">7.6 Cookies e Tecnologias de Rastreamento</div>
+        <p class="doc-p">Os produtos web da Família Claudinei utilizam cookies e tecnologias similares. O consentimento para uso de cookies não essenciais é obtido de forma granular e prévia, conforme exigido pela LGPD. O Usuário pode gerenciar suas preferências de cookies a qualquer momento pelo painel de configurações de privacidade disponível em todos os produtos.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 8 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s8">
+      <div class="sec-header">
+        <span class="sec-num">08</span>
+        <h2 class="sec-title">Pagamentos, Planos e <em>Faturamento</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">8.1 Estrutura de Preços</div>
+        <p class="doc-p">Os Serviços são oferecidos nos Planos Free (gratuito), Pro, Scale e Enterprise, com preços publicados em <a href="telos-pricing.html">telos.ai/precos</a>. A Telos Technologies reserva-se o direito de alterar os preços mediante aviso prévio de 30 dias para planos mensais e 60 dias para planos anuais.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">8.2 Cobrança por Uso</div>
+        <p class="doc-p">Os Planos Pro e Scale incluem cotas mensais de requisições. O uso excedente é cobrado conforme a tabela de preços vigente por token de entrada e saída. O Usuário é responsável por monitorar seu consumo por meio do painel de uso em tempo real disponível no portal do desenvolvedor.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">8.3 Pagamentos e Inadimplência</div>
+        <p class="doc-p">Os pagamentos são processados mensalmente em moeda brasileira (BRL). Em caso de falha no pagamento, os Serviços serão suspensos após notificação por e-mail. O acesso será restaurado mediante regularização do pagamento. A Telos Technologies não é responsável por perdas decorrentes de suspensão por inadimplência.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">8.4 Política de Reembolso</div>
+        <p class="doc-p">Não são concedidos reembolsos por períodos parciais de uso ou por uso do Motor Sena que não atendeu às expectativas do Usuário, em razão da natureza do serviço de IA generativa. Exceções podem ser consideradas em casos de indisponibilidade superior ao SLA contratado, a critério da Telos Technologies.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 9 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s9">
+      <div class="sec-header">
+        <span class="sec-num">09</span>
+        <h2 class="sec-title">Isenções e <em>Limitação de Responsabilidade</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">9.1 Isenção de Garantias</div>
+        <p class="caps-legal">OS SERVIÇOS SÃO FORNECIDOS "NO ESTADO EM QUE SE ENCONTRAM" ("AS IS") E "CONFORME DISPONÍVEIS", SEM GARANTIAS DE QUALQUER NATUREZA, EXPRESSAS OU IMPLÍCITAS, INCLUINDO, SEM LIMITAÇÃO, GARANTIAS DE COMERCIALIZAÇÃO, ADEQUAÇÃO A UMA FINALIDADE ESPECÍFICA, NÃO VIOLAÇÃO, PRECISÃO, COMPLETUDE OU DISPONIBILIDADE ININTERRUPTA.</p>
+        <p class="doc-p">Em particular, a Telos Technologies não garante que: (i) o Conteúdo Gerado seja preciso, completo, atualizado ou adequado para qualquer finalidade; (ii) os Serviços operarão sem erros ou interrupções; (iii) os Serviços atenderão a requisitos específicos do Usuário não previstos expressamente nestes Termos.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">9.2 Limitação de Responsabilidade</div>
+        <p class="caps-legal">NA MÁXIMA EXTENSÃO PERMITIDA PELA LEGISLAÇÃO BRASILEIRA APLICÁVEL, A RESPONSABILIDADE TOTAL DA TELOS TECHNOLOGIES, POR QUALQUER CAUSA E INDEPENDENTEMENTE DA FORMA DA AÇÃO, SERÁ LIMITADA AO VALOR PAGO PELO USUÁRIO PELOS SERVIÇOS NOS ÚLTIMOS 12 (DOZE) MESES ANTERIORES AO EVENTO QUE ORIGINOU A RECLAMAÇÃO.</p>
+        <p class="doc-p">Em nenhuma hipótese a Telos Technologies será responsável por: (i) danos indiretos, incidentais, consequenciais, especiais ou exemplares; (ii) lucros cessantes, perda de dados ou perda de oportunidade de negócio; (iii) decisões tomadas com base em Conteúdo Gerado sem supervisão humana qualificada.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">9.3 Indenização pelo Usuário</div>
+        <p class="doc-p">O Usuário concorda em indenizar, defender e isentar a Telos Technologies, seus administradores, funcionários e parceiros de e contra quaisquer reclamações, danos, perdas, responsabilidades e despesas (incluindo honorários advocatícios razoáveis) decorrentes de: (i) violação destes Termos pelo Usuário; (ii) uso dos Serviços em violação a direitos de terceiros; (iii) Conteúdo do Usuário que viole direitos de propriedade intelectual ou privacidade de terceiros.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 10 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s10">
+      <div class="sec-header">
+        <span class="sec-num">10</span>
+        <h2 class="sec-title">Vigência, Suspensão e <em>Encerramento</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">10.1 Vigência</div>
+        <p class="doc-p">Estes Termos entram em vigor na data de aceitação pelo Usuário e permanecem válidos enquanto o Usuário mantiver acesso ativo aos Serviços ou enquanto houver obrigações financeiras pendentes.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">10.2 Encerramento pelo Usuário</div>
+        <p class="doc-p">O Usuário pode encerrar sua Conta a qualquer momento, mediante solicitação pelo painel de controle ou por e-mail para <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>. O encerramento será efetivado em até 30 dias, período durante o qual o Usuário poderá realizar exportação de seus dados. Não são devidos reembolsos por períodos não utilizados em planos mensais.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">10.3 Encerramento pela Telos Technologies</div>
+        <p class="doc-p">A Telos Technologies pode suspender ou encerrar o acesso do Usuário, com ou sem aviso prévio, em caso de: violação material destes Termos; suspeita de fraude ou atividade ilegal; não pagamento após período de carência; ou encerramento do produto por decisão empresarial (neste último caso, com aviso mínimo de 60 dias para planos pagos).</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">10.4 Efeitos do Encerramento</div>
+        <p class="doc-p">Com o encerramento da Conta: as licenças concedidas ao Usuário são revogadas imediatamente; a Telos Technologies reterá os dados pelo prazo mínimo exigido por lei; as Seções 6, 7 (obrigações de proteção de dados), 9 e 12 sobreviverão ao encerramento destes Termos.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 11 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s11">
+      <div class="sec-header">
+        <span class="sec-num">11</span>
+        <h2 class="sec-title">Segurança da <em>Informação</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">11.1 Medidas Técnicas</div>
+        <p class="doc-p">A Telos Technologies adota medidas técnicas e organizacionais adequadas para proteger os Dados Pessoais e o Conteúdo do Usuário, incluindo: criptografia em trânsito (TLS 1.2+) e em repouso; autenticação por JWT com prazo de expiração; isolamento de infraestrutura por cliente nos planos Enterprise; e monitoramento contínuo de segurança.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">11.2 Notificação de Incidentes</div>
+        <p class="doc-p">Em caso de incidente de segurança que possa afetar os dados dos Usuários, a Telos Technologies notificará os Usuários afetados e a ANPD no <strong>prazo de 72 horas</strong> a partir da ciência do incidente, nos termos do Art. 48 da LGPD, contendo as informações exigidas pela regulamentação vigente.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">11.3 Programa de Divulgação de Vulnerabilidades</div>
+        <p class="doc-p">A Telos Technologies encoraja a divulgação responsável de vulnerabilidades. Pesquisadores de segurança podem reportar vulnerabilidades por e-mail para <a href="mailto:ampla.ai@outlook.com?subject=Vulnerability Report">ampla.ai@outlook.com</a> com o assunto "Vulnerability Report". A Telos Technologies compromete-se a: acusar recebimento em até 48 horas; investigar e remediar vulnerabilidades confirmadas em prazo razoável; e abster-se de ações legais contra pesquisadores que agirem de boa-fé.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEÇÃO 12 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-section" id="s12">
+      <div class="sec-header">
+        <span class="sec-num">12</span>
+        <h2 class="sec-title"><em>Disposições Gerais</em></h2>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">12.1 Lei Aplicável e Foro</div>
+        <p class="doc-p">Estes Termos são regidos exclusivamente pela legislação da República Federativa do Brasil. Para a resolução de quaisquer controvérsias, as partes elegem o Foro da Comarca de <strong>São Paulo, Estado de São Paulo</strong>, com expressa renúncia a qualquer outro, por mais privilegiado que seja.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">12.2 Alterações nos Termos</div>
+        <p class="doc-p">A Telos Technologies pode modificar estes Termos a qualquer momento. Para alterações materiais, o Usuário será notificado por e-mail com no mínimo 30 dias de antecedência para planos pagos e 15 dias para o Plano Free. O uso continuado dos Serviços após a data de vigência das alterações constitui aceitação dos novos Termos.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">12.3 Cessão</div>
+        <p class="doc-p">O Usuário não pode ceder, transferir ou sublicenciar os direitos e obrigações decorrentes destes Termos sem consentimento prévio por escrito da Telos Technologies. A Telos Technologies pode ceder estes Termos em caso de fusão, aquisição, reestruturação societária ou venda de ativos, com notificação ao Usuário.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">12.4 Integralidade</div>
+        <p class="doc-p">Estes Termos constituem o acordo integral entre as partes com relação aos Serviços e substituem todos os acordos, representações e entendimentos anteriores sobre o mesmo objeto. Em caso de conflito entre estes Termos e qualquer contrato Enterprise específico, este último prevalecerá.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">12.5 Independência das Cláusulas</div>
+        <p class="doc-p">Se qualquer disposição destes Termos for considerada inválida ou inexequível por qualquer tribunal competente, as demais disposições permanecerão em pleno vigor e efeito. A disposição inválida será substituída pela disposição válida mais próxima da intenção original das partes.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">12.6 Renúncia</div>
+        <p class="doc-p">A falha da Telos Technologies em exigir o cumprimento de qualquer disposição destes Termos não será interpretada como renúncia ao direito de exigi-lo posteriormente. Renúncias a direitos específicos devem ser feitas expressamente e por escrito.</p>
+      </div>
+
+      <div class="subsec">
+        <div class="subsec-title">12.7 Comunicações</div>
+        <p class="doc-p">Todas as comunicações oficiais entre as partes serão realizadas por escrito. Comunicações da Telos Technologies ao Usuário serão feitas pelo e-mail cadastrado na Conta. Comunicações do Usuário à Telos Technologies deverão ser enviadas para <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>.</p>
+      </div>
+    </div>
+
+    <!-- ASSINATURA -->
+    <div class="doc-section visible">
+      <div class="doc-divider"></div>
+      <div class="sig-block">
+        <div class="sig-logo">Telos<span>.</span></div>
+        <div class="sig-sub">Tellos Tecnologia LTDA. &nbsp;·&nbsp; Claudinei AI/div>
+        <p class="sig-meta">
+          Versão 1.0 &nbsp;·&nbsp; Janeiro de 2025 &nbsp;·&nbsp; Brasil<br>
+          Contato: <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a>
+        </p>
+        <p class="sig-note">
+          Este documento foi preparado exclusivamente para uso interno e externo da Telos Technologies. Para questões jurídicas, consulte um advogado habilitado na OAB.
+        </p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark">T</div>
+    Telos Technologies
+  </div>
+  <ul class="footer-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">Sobre</a></li>
+    <li><a href="docs.html">Docs</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="telos-pricing.html">Preços</a></li>
+  </ul>
+  <div class="footer-right">
+    <a href="mailto:ampla.ai@outlook.com">ampla.ai@outlook.com</a><br>
+    © 2025 Tellos Tecnologia LTDA.
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<a href="#" id="back-top" title="Voltar ao topo">↑</a>
+
+<script>
+// ── Reading progress bar ──
+const prog = document.getElementById('read-progress');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  prog.style.width = (scrolled / total * 100) + '%';
+
+  // Back to top visibility
+  document.getElementById('back-top').classList.toggle('visible', scrolled > 400);
+});
+
+// ── Reveal on scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.doc-section:not(.visible)').forEach(el => observer.observe(el));
+
+// ── Sidebar active link ──
+const sections = document.querySelectorAll('.doc-section[id]');
+const sbLinks  = document.querySelectorAll('.sb-links a');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      sbLinks.forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.sb-links a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-10% 0px -80% 0px' });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
